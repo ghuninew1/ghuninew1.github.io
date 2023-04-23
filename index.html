@@ -1,20 +1,71 @@
 <!DOCTYPE html>
-
 <html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-  <title>Web Test</title>
-  <LINK href="styles.css" rel="stylesheet" type="text/css">
+  <meta charset="UTF-8">
+  <base href="./" />
+  <link rel="stylesheet" type="text/css" href="./speed.css">
+
+  <title>NodeJS HTTP Speedtest: All for WAN and WAN for all</title>
 </head>
+<body ng-app="app">
+  <div ng-controller="all">
+    <div id="jswarning" ng-hide="!!$loaded">You need to use a browser that supports Javascript and AJAX.</div>
+    <div ng-hide="!!!$loaded" class="ng-hide">
+      <button ng-click="$startDownload()" class="download" ng-disabled="!!current.all">Download</button>
+      <button ng-click="$startUpload()" ng-disabled="!!current.all">Upload</button>
+      <button ng-click="$startBoth()" ng-disabled="!!current.all">Both</button>
+      <button ng-click="$stopTests();" ng-disabled="!!!current.all">Stop</button>
+      <button ng-click="$startDownloadStress()" class="download" ng-disabled="!!current.all">Download Stress</button>
+      <button ng-click="$startUploadStress()" class="download" ng-disabled="!!current.all">Upload Stress</button>
+      <button ng-click="$downloadCSV()" ng-disabled="!!!results.length">CSV</button>
+      <button ng-click="$clearResults()" ng-disabled="!!current.all">Clear results</button>
 
-<body>
+      <div class="tableout">
 
-<!-- <img src="forkit.gif" id="octocat" alt="" /> -->
+        <h3>
+          Running test:
+          <span ng-show="!!current.upload && !!!current.download">Upload</span>
+          <span ng-show="!!current.download && !!!current.upload">Download</span>
+          <span ng-show="!!current.download && !!current.upload">Download/Upload</span>
+          <span ng-show="!!!current.download && !!!current.upload">None</span>
+        </h3>
 
-<!-- Feel free to change this text here -->
-<p>
-  Fork me? Fork you, @ghuninew1
-</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Started</th>
+              <th>Direction</th>
+              <th>Size</th>
+              <th>Time (ms)</th>
+              <th>Speed</th>
+              <th>%</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="step in current.all | orderObjectBy:'start':true" ng-include src="'/results-td.html'"></tr>
+          </tbody>
+          <tbody>
+            <tr ng-repeat="step in results | orderBy:'start':true" ng-include src="'/results-td.html'"></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 
+  <script type="text/ng-template" id="/results-td.html">
+      <td>{{step.start | date:'yyyyMMdd HH:mm:ss:sss '}}</td>
+      <td>{{step.dir}}</td>
+      <td>{{step.fsize.toFixed(2)}}{{step.fsizetype}}</td>
+      <td>{{step.time}}</td>
+      <td>{{step.bitrate.toFixed(2)}}{{step.bittype}}ps</td>
+      <td>{{step.percent.toFixed(0)}}</td>
+  </script>
+
+  <script type="application/javascript" src="./jquery-3.2.1.min.js" ></script>
+  <script type="application/javascript" src="./jquery.ajax-progress.js" ></script>
+  <script type="application/javascript" src="./lodash.min.js"></script>
+  <script type="application/javascript" src="./json2csv.js"></script>
+  <script type="application/javascript" src="./angular.min.js"></script>
+  <script type="application/javascript" src="./speed.js"></script>
 </body>
 </html>
