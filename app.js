@@ -1,33 +1,25 @@
-const path = require('path');
-const feathers = require('@feathersjs/feathers');
-const express = require('@feathersjs/express');
-const socketio = require('@feathersjs/socketio');
+const app = require('express')();
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
 
-// Heroku will set the PORT environment variable. Otherwise use 3030
-const port = process.env.PORT || 3030;
+let counter = 0;
 
-// Creates an Express compatible Feathers application
-const app = express(feathers());
-
-app.use('/', express.static(path.join(__dirname, '..', 'public')));
-// Parse HTTP JSON bodies
-app.use(express.json());
-// Parse URL-encoded params
-app.use(express.urlencoded({ extended: true }));
-// Add REST API support
-app.configure(express.rest());
-// Configure Socket.io real-time APIs
-app.configure(socketio());
-// Register a messages service with only a `get` method
-app.use('/messages', {
-  async get (id) {
-    return { id };
-  }
+app.get('/', function(req, res){
+  res.sendFile(__dirname + '/index.html');
 });
-// Register a nicer error handler than the default Express one
-app.use(express.errorHandler());
 
-// Start the server
-app.listen(port).on('listening', () =>
-  console.log(`Feathers server listening on localhost:${port}`)
-);
+io.on('connection', function(socket){
+  socket.on('getCounter', function(callback) {
+    // Increment the counter
+    counter++;
+  
+    console.log(`Returning getCounter with counter ${counter}`);
+    
+    // Use a Node style callback (error, value)
+    callback(null, counter);
+  });
+});
+
+http.listen(3000, function(){
+  console.log('listening on *:3000');
+});
