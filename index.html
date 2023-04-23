@@ -1,117 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>http-proxy-middleware - WebSocket example</title>
-    <style>
-      fieldset {
-        border: 0;
-      }
-      label {
-        display: inline-block;
-        width: 5em;
-        vertical-align: top;
-      }
-      code {
-        background-color: #eee;
-      }
-    </style>
-  </head>
+    <head>
+        <title>WebSocket</title>
+        <style type="text/css">
+            .status-section {
+                margin-bottom: 1rem;
+            }
 
-  <body>
-    <h2>WebSocket demo</h2>
+            .status-connected {
+                color: green;
+            }
 
-    <p>Proxy <code>https://bbs.bigbrain-studio.com/status/bb</code> to <code>ws://ws.ifelse.io</code></p>
+            .status-closed {
+                color: orange;
+            }
 
-    <fieldset id="configuration">
-      <p>
-        <label for="location">location:</label>
-        <button id="connectBtn">connect</button>
-        <button id="disconnectBtn" disabled="disabled">disconnect</button>
-      </p>
-    </fieldset>
-    <fieldset id="messaging" disabled="disabled">
-      <p>
-        <label for="message">message:</label>
-        <input type="text" id="message" value="Hello WebSocket" />
-        <button id="sendBtn">send</button>
-      </p>
-      <p>
-        <label for="logger">log:</label>
-        <textarea id="logger" cols="30" rows="10"></textarea>
-      </p>
-    </fieldset>
+            .status-error {
+                color: red;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>WebSocket Demo</h1>
 
-    <script>
-      window.onload = function () {
-        // elements
-        const configuration = document.getElementById('configuration');
-        const location = document.getElementById('location');
-        const connectBtn = document.getElementById('connectBtn');
-        const disconnectBtn = document.getElementById('disconnectBtn');
-        const messaging = document.getElementById('messaging');
-        const message = document.getElementById('message');
-        const sendBtn = document.getElementById('sendBtn');
-        const logger = document.getElementById('logger');
+        <h3>Browser : <span id="browser-name"></span></h3>
+        <div class="status-section">Status : <span id="status"></span></div>
 
-        // ws
-        let socket;
+        <input id="input" type="input"/>
+        <button id="send-button">send</button>
+        <button id="close-button">close</button>
 
-        connectBtn.onclick = () => {
-          connect();
-        };
-        disconnectBtn.onclick = () => {
-          disconnect();
-        };
-        sendBtn.onclick = () => {
-          sendMessage(message.value);
-        };
+        <br/>
 
-        function connect() {
-          setupSocket(location.value);
-          toggleControls();
-        }
+        <div id="output"></div>
 
-        function disconnect() {
-          socket.close();
-          socket = undefined;
-          toggleControls();
-        }
+        <script type="text/javascript">
+            // Opera 8.0+
+            var isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
 
-        function sendMessage(val) {
-          log('SEND: ' + val);
-          socket.send(val);
-        }
+            // Firefox 1.0+
+            var isFirefox = typeof InstallTrigger !== 'undefined';
 
-        function setupSocket(url) {
-          socket = new WebSocket(url);
-          socket.addEventListener('open', () => {
-            log('CONNECTED');
-          });
-          socket.addEventListener('close', () => {
-            log('DISCONNECTED');
-          });
-          socket.addEventListener('error', () => {
-            log('SOCKET ERROR OCCURRED');
-          });
-          socket.addEventListener('message', (msg) => {
-            log('RECEIVED:' + msg.data);
-          });
-        }
+            // Safari 3.0+ "[object HTMLElementConstructor]"
+            var isSafari = /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || (typeof safari !== 'undefined' && safari.pushNotification));
 
-        function log(message) {
-          logger.value = logger.value + message + '\n';
-          logger.scrollTop = logger.scrollHeight; // scroll to bottom
-        }
+            // Internet Explorer 6-11
+            var isIE = /*@cc_on!@*/false || !!document.documentMode;
 
-        function toggleControls() {
-          [connectBtn, disconnectBtn, messaging].forEach((el) => toggleEnabled(el));
-        }
+            // Edge 20+
+            var isEdge = !isIE && !!window.StyleMedia;
 
-        function toggleEnabled(el) {
-          el.disabled = el.disabled ? false : true;
-        }
-      };
-    </script>
-  </body>
+            // Chrome 1 - 79
+            var isChrome = !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime);
+
+            // Edge (based on chromium) detection
+            var isEdgeChromium = isChrome && (navigator.userAgent.indexOf("Edg") != -1);
+
+            // Blink engine detection
+            var isBlink = (isChrome || isOpera) && !!window.CSS;
+
+            const browserName = document.getElementById("browser-name");
+
+            if (isOpera) {
+                browserName.innerText = "Opera";
+            } else if (isFirefox) {
+                browserName.innerText = "Firefox";
+            } else if (isSafari) {
+                browserName.innerText = "Safari";
+            } else if (isIE) {
+                browserName.innerText = "IE";
+            } else if (isEdge) {
+                browserName.innerText = "Edge";
+            } else if (isChrome) {
+                browserName.innerText = "Chrome";
+            } else if (isEdgeChromium) {
+                browserName.innerText = "Edge Chromium";
+            } else if (isBlink) {
+                browserName.innerText = "Blink";
+            } else {
+                browserName.innerText = "Unknown";
+            }
+        </script>
+
+        <script type="text/javascript">
+            const status = document.getElementById("status");
+            const input = document.getElementById("input");
+            const output = document.getElementById("output");
+            const sendButton = document.getElementById("send-button");
+            const closeButton = document.getElementById("close-button");
+
+            const socket = new WebSocket("ws://localhost");
+
+            socket.addEventListener("open", function (event) {
+                console.log("On open => ", event);
+                status.innerText = "Connected";
+                status.className = "status status-connected";
+            });
+
+            socket.addEventListener("close", function (event) {
+                console.log("On close => ", event);
+                status.innerText = "Closed";
+                status.className = "status status-closed";
+            });
+
+            socket.addEventListener("error", function (event) {
+                console.log("On error => ", event);
+                status.innerText = "Error";
+                status.className = "status status-error";
+            });
+
+            socket.addEventListener("message", function (event) {
+                console.log("Received data from server => ", event);
+                output.innerHTML = output.innerHTML + "<br/>" + event.data;
+            });
+
+            sendButton.addEventListener("click", function () {
+                console.log("Send data to server => ", input.value);
+                socket.send(input.value);
+                input.value = "";
+            });
+
+            closeButton.addEventListener("click", function () {
+                console.log("Close connection");
+                socket.close();
+            });
+        </script>
+    </body>
 </html>
