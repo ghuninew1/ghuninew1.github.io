@@ -37,6 +37,20 @@ jobs:
           destination: ./_site
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
+        
+ 
+      - uses: actions/setup-node@v3
+      with:
+        node-version: '14.x'
+        registry-url: 'https://registry.npmjs.org'
+      # Skip post-install scripts here, as a malicious
+      # script could steal NODE_AUTH_TOKEN.
+      - run: npm ci --ignore-scripts
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      # `npm rebuild` will run all those post-install scripts for us.
+      - run: npm rebuild && npm run prepare --if-present
+        
 
   # Deployment job
   deploy:
