@@ -89,7 +89,7 @@
             const sendButton = document.getElementById("send-button");
             const closeButton = document.getElementById("close-button");
 
-            const socket = new WebSocket("ws://localhost");
+            const socket = new WebSocket("ws://socket.io");
 
             socket.addEventListener("open", function (event) {
                 console.log("On open => ", event);
