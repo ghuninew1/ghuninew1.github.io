@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" manifest="example.appcache">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="type; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="img/icon/apple-touch-icon.png">
+    <link rel="icon" type="image/x-icon" href="img/icon/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/icon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/icon/favicon-16x16.png">
+    <link rel="manifest" href="manifest.json">
+    <link rel="mask-icon" href="img/icon/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="GhiniNew">
+    <meta name="robots" content="noindex"/>
+    
+    <title>Ghuni_New</title>
+
+    <link href="./bitnami.css" media="screen" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body> 
+    <div id="container" class="container-virtual-applicances">
+      <img src="img/logo.webp" width="100" height="100" alt="picture"/>
+      <div id="dashboard-content" class="launch-page">
+        <div id="dashboard-slogan" class="launch-slogan">
+          <!-- <h1>Ghuni_New!</h1> -->
+
+          <table class="virtual-appliances-logo-block">
+            <tr>
+              <div class="dashboard-button-big launch-button launch-button-green"><a id="1" href="https://sky.bigbrain-studio.com/login">SKY CLOUD</a></div>       
+              <div class="dashboard-button-big launch-button"><a href="opcache.php">OPCACHE INFO</a></div> 
+              <div class="dashboard-button-big launch-button launch-button-green"><a id="2" href="https://bbs.bigbrain-studio.com/">BBS Status</a></div>    
+              <div class="dashboard-button-big launch-button"><a href="apc.php">APCU INFO</a></div>
+              <div class="dashboard-button-big launch-button launch-button-green"><a id="3" href="info.php">PHP INFO</a></div>    
+              <div class="dashboard-button-big launch-button"><a href="linfo/">LINFO</a></div>
+            </tr> 
+          </table>
+        </div> 
+        <div id="dashboard-right-area">
+          <div class="dashboard-button-big launch-button launch-button-green"><a id="4" href="adminer.php">Adminer</a></div>    
+          <div class="dashboard-button-big launch-button"><a href="test/">TEST 1</a></div>       
+          <div class="dashboard-button-big launch-button launch-button-green"><a id="5" href="adminer-sqlite.php">Adminer SQLite</a></div>           
+          <div class="dashboard-button-big launch-button"><a href="test2/">TEST 2</a></div>
+          <div class="dashboard-button-big launch-button launch-button-green"><a id="6" href="speedtest/">SpeedTest</a></div>           
+          <div class="dashboard-button-big launch-button"><a href="test3/">TEST 3</a></div>
+        </div>        
+    </div>
+  </body>
+  
+  <script>
+    // Check that service workers are supported
+    if ('serviceWorker' in navigator) {
+      // Use the window load event to keep the page load performant
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js');
+      });
+    }
+  </script> 
+
+</html>
