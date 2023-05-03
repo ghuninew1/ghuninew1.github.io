@@ -9,8 +9,8 @@ h2 {margin-top:0;margin-bottom:0;font-size:25px;padding-top:0;padding-bottom:0}
 .clear {clear:both}
 .center {margin-left:auto;margin-right:auto;}
 
-#container {background: url(./img/background.png) top center no-repeat;width:100%;height:100%;}
-.container-virtual-applicances#container {background: url(./img/background.png) top center no-repeat;width:100%;height:100%;background-position:center -190px}
+#container {background: url(./img/background.png) top center repeat;width:100%;height:100%;}
+
 
 #header {background:#fff;height:75px;width:100%;}
 
