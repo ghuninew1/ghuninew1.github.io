@@ -9,7 +9,7 @@ jobs:
         uses: actions/checkout@v3
       - name: Hello world action step
         id: hello
-        uses: GhuniNew1/ghuninew1.github.io@v1.1
+        uses: GhuniNew1/ghuninew1.github.io
         with:
           who-to-greet: 'GhuniNew'
       # Use the output from the `hello` step
