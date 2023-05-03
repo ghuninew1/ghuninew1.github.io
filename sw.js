@@ -13,7 +13,7 @@
 
 // This polyfill provides Cache.add(), Cache.addAll(), and CacheStorage.match(),
 // which are not implemented in Chrome 40.
-//importScripts('serviceworker-cache-polyfill.js');
+importScripts('./serviceworker-cache-polyfill.js');
 
 
 // example usage:
