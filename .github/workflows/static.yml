@@ -23,41 +23,35 @@ concurrency:
   group: "pages"
   cancel-in-progress: false
 
-#jobs:
-  # Single deploy job since we're just deploying
-  #deploy:
-  #  environment:
-  #    name: github-pages
-  #    url: ${{ steps.deployment.outputs.page_url }}
-  #  runs-on: ubuntu-latest
-  #  steps:
-  #    - name: Checkout
-  #      uses: actions/checkout@v3
-  #    - name: Setup Pages
-  #      uses: actions/configure-pages@v3
- #     - name: Upload artifact
-      #  uses: actions/upload-pages-artifact@v1
-     #   with:
-    #      # Upload entire repository
-   #       path: '.'
-  #    - name: Deploy to GitHub Pages
- #       id: deployment
-#        uses: actions/deploy-pages@v2 
-        
 jobs:
-  example_matrix:
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-        node: [16]
-        include:
-          - node: 16
-            npm: 6
-    runs-on: ${{ matrix.os }}
+  # Single deploy job since we're just deploying
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          # Upload entire repository
+          path: '.'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2 
+
+
+      - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node }}
-      - if: ${{ matrix.npm }}
-        run: npm install -g npm@${{ matrix.npm }}
-      - run: npm --version
+          node-version: 16
+          cache: 'npm'
+      - run: npm ci
+      - run: npm test
+
+        
+        
