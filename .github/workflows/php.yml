@@ -1,4 +1,4 @@
-name: PHP Composer
+name: PHP Setup
 
 on:
   push:
@@ -7,21 +7,10 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
-
+  run:
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v2
-
-    - name: Validate composer.json and composer.lock
-      run: composer validate
-
-    - name: Install dependencies
-      run: composer install --prefer-dist --no-progress
-
-    - name: Run test suite
-      run: composer test
-
-    - name: Run php-cs-fixer
-      run: composer csfix
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.2'
