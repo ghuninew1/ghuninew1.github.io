@@ -1,3 +1,0 @@
-<?php
-
-$OBFUSCATION_SALT = 0x615ccab2;
