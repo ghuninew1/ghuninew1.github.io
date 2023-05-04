@@ -1,0 +1,73 @@
+<html lang="en">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="Content-Type" content="type; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="apple-touch-icon" sizes="180x180" href="./icon/apple-touch-icon.png">
+  <link rel="icon" type="image/x-icon" href="./icon/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="./icon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./icon/favicon-16x16.png">
+  <link rel="manifest" href="./manifest.json">
+  <link rel="mask-icon" href="./icon/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="GhiniNew">
+  <title>GNEW</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+     navigator.serviceWorker.register('./service-worker.js'); 
+    });
+  }
+</script>
+
+<body class="container">
+  <div class="logo">
+    <a href="https://sky.bigbrain-studio.com/" target="_parent">
+      <img id="logo" src="./assets/logo.webp"></a>
+  </div>
+  <div class="header">
+    <div class="tat2">
+      <section class="more">
+        <a href="https://sky.bigbrain-studio.com/login" target="_blank">
+          <button>BBS Cloud</button>
+        </a>
+        <a href="https://bbs.bigbrain-studio.com/" target="_blank">
+          <button>BBS Status</button>
+        </a>
+      </section>
+      <section class="ii2">
+        <a href="./info.php" target="_blank">
+          <button>PHP Info</button>
+        </a>
+        <a href="./apc.php" target="_blank">
+          <button>APCU</button>
+      </section>
+      <section class="more">
+        </a>
+        <a href="./opcache.php" target="_blank">
+          <button>Opcache</button>
+        </a>
+        <a href="./test3/" target="_blank">
+          <button>Test3</button>
+        </a>
+      </section>
+      <section class="ii2">
+        <a href="./test/" target="_blank">
+          <button>Speedtest</button>
+        </a>
+        <a href="./test2/" target="_blank">
+          <button>Speedtest2</button>
+        </a>
+      </section>
+    </div>
+
+  </div>
+</body>
+</html>
