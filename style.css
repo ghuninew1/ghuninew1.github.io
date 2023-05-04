@@ -1,11 +1,18 @@
 * {
-  box-sizing: border-box;
+  box-sizing: content-box;
   font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, "Helvetica Neue", Arial, sans-serif;
-  margin: auto;
-}
 
+}
+#logo {
+  width: 90px;
+  height: 90px;
+  float: left;
+  margin-top: 5px;
+  margin-bottom: auto;
+  margin-left: 10px;
+  margin-right: auto;
+}
 .container {
-  display: block;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -20,10 +27,10 @@
   background-position-x: center;
   background-position-y: bottom;
   background-origin: padding-box;
+  
 }
 
 .header {
-  display: table-cell;
   min-height: auto;
   margin-left: auto;
   margin-right: auto;
@@ -38,19 +45,24 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background-image: url(./assets/backgroundx1280.webp);
+  background-size: auto;
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-position-y: center;
+  background-origin: padding-box;
 }
 .more>a>button {
   background: #9c6a13;
   border-radius: 10px;
   border: none;
   width: 200px;
-  margin-left: 10;
-  margin-right: 10;
-  margin-top: 20;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 20px;
   height: 55px;
-  color: #201414;
   text-align: center;
-  font-weight: 600;
+  font-weight: 600px;
   font-size: 18px;
   line-height: 19px;
   background: rgb(46, 205, 81);
@@ -68,13 +80,12 @@
   border-radius: 10px;
   border: none;
   width: 200px;
-  margin-left: 10;
-  margin-right: 10;
-  margin-top: 20;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 20px;
   height: 55px;
-  color: #201414;
   text-align: center;
-  font-weight: 600;
+  font-weight: 600px;
   font-size: 18px;
   line-height: 19px;
   background: rgb(214, 143, 36);
@@ -91,23 +102,12 @@
   display: table;
   min-height: auto;
   min-width: auto;
-  margin-left: 0;
-  margin-right: 100;
-  margin-top: 100;
-  margin-bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0px;
+  margin-bottom: 0px;
   align-items: center;
   text-align: center;
-}
-
-#logo {
-  width: 90;
-  height: 90;
-  float: left;
-  margin-top: 10;
-  margin-bottom: auto;
-  margin-left: 10;
-  margin-right: auto;
-  background-repeat: no-repeat;
 }
 
 body {
@@ -116,21 +116,25 @@ body {
   margin-left: auto;
   margin-right: auto;
   background-image: url(./assets/backgroundx1280.webp);
+  background-size: auto;
   background-repeat: no-repeat;
   background-position-x: center;
   background-position-y: center;
   background-origin: padding-box;
-  width: auto;
-  height: auto;
 }
 h1{
-  text-align: center;
-  font-size: 20px;
-  color: #fb5c00;
-  float: left;
-  display: inline;
-  margin-bottom: 50;
-  margin-top: auto;
-  position: relative;
+  text-align: left;
+  font-size: 9px;
+  color: #ee167b;
+  display: flex;
+  margin-bottom: auto;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: 10px;
+  position: sticky;
   
+}
+div {
+  width: auto;
+  height: auto;
 }

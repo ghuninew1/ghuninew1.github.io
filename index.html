@@ -1,8 +1,9 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta http-equiv="Content-Type" content="type; charset=utf-8" />
+  <meta http-equiv="Content-Type" content="type; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="mobile-web-app-capable" content="yes">
   <link rel="apple-touch-icon" sizes="180x180" href="./icon/apple-touch-icon.png">
@@ -16,58 +17,81 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="GhiniNew">
   <title>GNEW</title>
-  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <script>
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-     navigator.serviceWorker.register('./service-worker.js'); 
+      navigator.serviceWorker.register('./service-worker.js');
     });
   }
 </script>
 
-<body class="container">
-  <div class="logo">
-    <a href="https://sky.bigbrain-studio.com/" target="_parent">
-      <img id="logo" src="./assets/logo.webp"></a>
-  </div>
-  <div class="header">
-    <div class="tat2">
+<body>
+
+  <div class="container header">
+  
+    <a id="logo" href="https://sky.bigbrain-studio.com/" target="_blank">
+      <img id="logo" src="./assets/logo.webp" alt="logo"></a>
+
+  
+    <div class="tat2" onmousemove="myFunction(event)" onmouseout="clearCoor()">
       <section class="more">
-        <a href="https://sky.bigbrain-studio.com/login" target="_parent">
-          <button>BBS Cloud</button>
+        <a href="https://sky.bigbrain-studio.com/login" target="_blank">
+          <button onfocus="this" onmouseover="bigImg(this)" onmouseout="normalImg(this)">BBS Cloud</button>
         </a>
-        <a href="https://bbs.bigbrain-studio.com/" target="_parent">
-          <button>BBS Status</button>
+        <a href="https://bbs.bigbrain-studio.com/" target="_blank">
+          <button onfocus="this" onmouseover="bigImg(this)" onmouseout="normalImg(this)">BBS Status</button>
         </a>
       </section>
       <section class="ii2">
-        <a href="./info.php" target="_parent">
-          <button>PHP Info</button>
+        <a href="./info.php" target="_blank">
+          <button onfocus="this" onmouseover="bigImg(this)" onmouseout="normalImg(this)">PHP Info</button>
         </a>
-        <a href="./apc.php" target="_parent">
-          <button>APCU</button>
+        <a href="./apc.php" target="_blank">
+          <button onfocus="this" onmouseover="bigImg(this)" onmouseout="normalImg(this)">APCU</button>
       </section>
       <section class="more">
         </a>
-        <a href="./opcache.php" target="_parent">
-          <button>Opcache</button>
+        <a href="./opcache.php" target="_blank">
+          <button onfocus="this" onmouseover="bigImg(this)" onmouseout="normalImg(this)">Opcache</button>
         </a>
-        <a href="./test3/" target="_parent">
-          <button>Test3</button>
+        <a href="./test3/" target="_blank">
+          <button onfocus="this" onmouseover="bigImg(this)" onmouseout="normalImg(this)">Test3</button>
         </a>
       </section>
       <section class="ii2">
-        <a href="./test/" target="_parent">
-          <button>Speedtest</button>
+        <a href="./test/" target="_blank">
+          <button onfocus="this" onmouseover="bigImg(this)" onmouseout="normalImg(this)">Speedtest</button>
         </a>
-        <a href="./test2/" target="_parent">
-          <button>Speedtest2</button>
+        <a href="./test2/" target="_blank">
+          <button onfocus="this" onmouseover="bigImg(this)" onmouseout="normalImg(this)">Speedtest2</button>
         </a>
       </section>
     </div>
-
+    <h1 id="demo"></h1>
   </div>
+
+  <script>
+    function bigImg(x) {
+      x.style.width = "210px";
+    }
+    function normalImg(x) {
+      x.style.width = "200px";
+    }
+  </script>
+  <script>
+    function myFunction(e) {
+      let x = e.clientX;
+      let y = e.clientY;
+      let coor = "Coordinates: (" + x + "," + y + ")";
+      document.getElementById("demo").innerHTML = coor;
+    }
+    function clearCoor() {
+      document.getElementById("demo").innerHTML = "";
+    }
+  </script>
 </body>
+
 </html>
