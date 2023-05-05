@@ -13,8 +13,8 @@
   <link rel="manifest" href="./manifest.json">
   <link rel="mask-icon" href="./icon/safari-pinned-tab.svg" color="#5bbad5">
   <meta name="msapplication-TileColor" content="#da532c">
-  <meta name="theme-color" content="#ffffff">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="msapplication-config" content="./icon/browserconfig.xml">
+  <meta name="theme-color" content="#000000">
   <meta name="description" content="GhiniNew">
   <title>GNEW</title>
   <link rel="stylesheet" href="style.css">
@@ -93,6 +93,15 @@
       document.getElementById("demo").innerHTML = "";
     }
   </script>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LSG0JNDQ2J"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LSG0JNDQ2J');
+</script>
 </body>
 
 </html>
