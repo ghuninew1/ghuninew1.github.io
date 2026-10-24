@@ -1,17 +1,12 @@
 import { useEffect, useState } from "react";
 
-function useObserver(ref, rootMargin = "0px", threshold = 0) {
-    const [visible, setVisible] = useState(false);
+export function useObserver(ref, rootMargin = "0px", threshold = 0) {
+    const [visible, setVisible] = useState(() => typeof IntersectionObserver === "undefined");
 
     useEffect(() => {
-        const currentRef = ref?.current;
+        const element = ref?.current;
 
-        if (!currentRef) return;
-
-        // Fallback for browsers without IntersectionObserver
-        if (typeof IntersectionObserver === "undefined") {
-            // eslint-disable-next-line react-hooks/set-state-in-effect
-            setVisible(true);
+        if (!element || typeof IntersectionObserver === "undefined") {
             return;
         }
 
@@ -20,12 +15,12 @@ function useObserver(ref, rootMargin = "0px", threshold = 0) {
                 setVisible(entry.isIntersecting);
             },
             {
-                threshold,
                 rootMargin,
-            }
+                threshold,
+            },
         );
 
-        observer.observe(currentRef);
+        observer.observe(element);
 
         return () => {
             observer.disconnect();
