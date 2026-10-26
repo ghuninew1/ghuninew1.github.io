@@ -199,7 +199,7 @@ export default function Contact() {
                                         id="contact-subject"
                                         name="subject"
                                         type="text"
-                                        maxLength={200}
+                                        maxLength={150}
                                         required
                                         value={form.subject}
                                         onChange={handleChange}

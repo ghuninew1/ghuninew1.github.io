@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 
-const API_URL = import.meta.env.VITE_CONTACT_API_URL || "/api/contact";
+const API_URL = "https://issuedesk.bigbrain-studio.com/api/resend";
 
 export default function useResend() {
     const [loading, setLoading] = useState(false);
@@ -18,19 +18,30 @@ export default function useResend() {
         resetStatus();
 
         try {
+            if (data.website?.trim()) {
+                throw new Error("ไม่สามารถส่งข้อความได้ กรุณาลองใหม่อีกครั้ง");
+            }
+
             const response = await fetch(API_URL, {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(data),
+                credentials: "omit",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    name: data.name.trim(),
+                    email: data.email.trim(),
+                    subject: data.subject.trim(),
+                    message: data.message.trim(),
+                }),
+                signal: AbortSignal.timeout(30000),
             });
 
-            const result = await response.json().catch(() => ({}));
+            const result = await response.json().catch(() => null);
 
-            if (!response.ok) {
+            if (!response.ok || result?.success !== true) {
                 throw new Error(
-                    result.error || "ไม่สามารถส่งข้อความได้ กรุณาลองใหม่อีกครั้ง",
+                    typeof result?.message === "string"
+                        ? result.message
+                        : "ไม่สามารถส่งข้อความได้ กรุณาลองใหม่อีกครั้ง",
                 );
             }
 
