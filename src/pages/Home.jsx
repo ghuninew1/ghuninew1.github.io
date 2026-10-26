@@ -10,6 +10,7 @@ import { personalInfo } from "../data/portfolioData";
 import { ArrowDown, ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Github } from "../utils/github";
+import GlassButton from "../components/GlassButton";
 
 export default function Home() {
     return (
@@ -36,7 +37,7 @@ export default function Home() {
                                 Hello, I&apos;m
                             </p>
                             <h1 className="text-5xl font-semibold tracking-tight text-foreground sm:text-6xl lg:text-7xl xl:text-8xl">
-                                GhuniNew<span className="text-indigo-500">.</span>
+                                GhuniNew<span className="text-emerald-500">.</span>
                             </h1>
                             <p className="mt-6 max-w-2xl text-xl leading-8 text-foreground/80 sm:text-2xl">
                                 {personalInfo.headline}
@@ -45,32 +46,36 @@ export default function Home() {
                                 {personalInfo.bio}
                             </p>
                             <div className="mt-8 flex flex-wrap items-center gap-3">
+                                <GlassButton asChild>
                                 <Link
                                     to="#projects"
                                     onClick={(event) => {
                                         event.preventDefault();
                                         document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
                                     }}
-                                    className="inline-flex min-h-12 items-center gap-2 rounded-full bg-foreground px-6 text-sm font-semibold text-background transition-transform hover:scale-[1.03] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400"
+                                    className="inline-flex min-h-12 items-center gap-2 rounded-full bg-foreground px-6 text-sm font-semibold text-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
                                 >
                                     View Projects <ArrowDown className="size-4" />
                                 </Link>
+                                </GlassButton>
+                                <GlassButton asChild>
                                 <Link
                                     to="#contact"
                                     onClick={(event) => {
                                         event.preventDefault();
                                         document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
                                     }}
-                                    className="inline-flex min-h-12 items-center gap-2 rounded-full apple-glass-subtle px-6 text-sm font-semibold text-foreground transition-colors hover:text-indigo-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400"
+                                    className="inline-flex min-h-12 items-center gap-2 rounded-full apple-glass-subtle px-6 text-sm font-semibold text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
                                 >
                                     Contact Me <ArrowUpRight className="size-4" />
                                 </Link>
+                                </GlassButton>
                                 <a
                                     href={personalInfo.githubUrl}
                                     target="_blank"
                                     rel="noreferrer"
                                     aria-label="GhuniNew on GitHub"
-                                    className="inline-flex size-12 items-center justify-center rounded-full apple-glass-subtle text-foreground transition-colors hover:text-indigo-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400"
+                                    className="inline-flex size-12 items-center justify-center rounded-full apple-glass-subtle text-foreground transition-colors hover:text-emerald-600 dark:hover:text-emerald-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
                                 >
                                     <Github className="size-5" />
                                 </a>

@@ -4,6 +4,7 @@ import { cx } from "../../utils/cx";
 import { navigation } from "../../data/portfolioData";
 import { Link } from "react-router-dom";
 import { useActiveSection } from "../../hooks/useActiveSection";
+import GlassButton from "../GlassButton";
 
 const Sidebar = ({ isMobileOpen, onMobileOpen, onMobileClose }) => {
     const activeSection = useActiveSection();
@@ -60,10 +61,10 @@ const Sidebar = ({ isMobileOpen, onMobileOpen, onMobileClose }) => {
                                     "group relative flex size-11 items-center",
                                     "justify-center rounded-xl",
                                     "transition-all duration-200",
-                                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400",
+                                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400",
                                     "active:scale-90",
                                     isActive
-                                        ? "bg-white/80 dark:bg-white/20 text-violet-600 dark:text-violet-300 shadow-sm border border-white/40 dark:border-white/10"
+                                        ? "bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 shadow-sm border border-emerald-500/20"
                                         : "text-muted-foreground hover:bg-white/40 dark:hover:bg-white/10 hover:text-foreground",
                                 )}
                             >
@@ -92,7 +93,7 @@ const Sidebar = ({ isMobileOpen, onMobileOpen, onMobileClose }) => {
 
             {/* Mobile floating menu button */}
             <div className="fixed bottom-5 left-4 z-50 lg:hidden animate-fadeInUp">
-                <button
+                <GlassButton
                     type="button"
                     onClick={onMobileOpen}
                     aria-label="Open section navigation"
@@ -103,11 +104,11 @@ const Sidebar = ({ isMobileOpen, onMobileOpen, onMobileClose }) => {
                         "apple-glass text-foreground",
                         "shadow-xl transition-all duration-200",
                         "hover:scale-105 active:scale-95",
-                        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400",
+                        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400",
                     )}
                 >
                     {isMobileOpen ? <X size={20} aria-hidden="true" /> : <Menu size={20} aria-hidden="true" />}
-                </button>
+                </GlassButton>
             </div>
 
             {/* Mobile navigation overlay */}
@@ -120,7 +121,7 @@ const Sidebar = ({ isMobileOpen, onMobileOpen, onMobileClose }) => {
                 aria-hidden={!isMobileOpen}
                 inert={!isMobileOpen}
             >
-                <button
+                <GlassButton
                     type="button"
                     aria-label="Close section navigation"
                     tabIndex={isMobileOpen ? 0 : -1}
@@ -130,7 +131,8 @@ const Sidebar = ({ isMobileOpen, onMobileOpen, onMobileClose }) => {
                         "transition-opacity duration-200",
                         isMobileOpen ? "opacity-100" : "opacity-0",
                     )}
-                />
+                >
+                </GlassButton>
 
                 <nav
                     id="mobile-section-navigation"
@@ -159,14 +161,14 @@ const Sidebar = ({ isMobileOpen, onMobileOpen, onMobileClose }) => {
                                     "flex min-h-11 items-center gap-3 rounded-xl px-3",
                                     "text-sm text-muted-foreground",
                                     "transition-colors duration-200",
-                                    "hover:bg-violet-500/10 hover:text-violet-400",
+                                    "hover:bg-emerald-500/10 hover:text-emerald-600 dark:hover:text-emerald-400",
                                     "focus-visible:outline-none",
-                                    "focus-visible:ring-2 focus-visible:ring-violet-400",
+                                    "focus-visible:ring-2 focus-visible:ring-emerald-400",
                                     "active:scale-95",
                                     "transition-colors duration-200",
                                     activeSection === href.slice(1)
-                                        ? "text-violet-500"
-                                        : "text-gray-500 hover:text-violet-400",
+                                        ? "text-emerald-600 dark:text-emerald-300"
+                                        : "text-muted-foreground hover:text-emerald-600 dark:hover:text-emerald-400",
                                 )}
                             >
                                 <Icon size={18} aria-hidden="true" />

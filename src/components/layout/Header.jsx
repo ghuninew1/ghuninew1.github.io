@@ -8,6 +8,7 @@ import { useActiveSection } from "../../hooks/useActiveSection";
 import { Github } from "../../utils/github";
 import Logo from "../../assets/logo.avif";
 import LogoFull from "../../assets/GhuniNew_full_color.avif";
+import GlassButton from "../GlassButton";
 
 const Header = () => {
     const activeSection = useActiveSection();
@@ -110,7 +111,7 @@ const Header = () => {
                         "rounded-xl p-1.5 focus-visible:outline-none",
                         "focus-visible:ring-2 focus-visible:ring-ring",
                         "transition-all duration-200",
-                        activeSection === "home" ? "text-violet-500" : "text-foreground/80 hover:text-violet-400",
+                        activeSection === "home" ? "text-emerald-600 dark:text-emerald-300" : "text-foreground/80 hover:text-emerald-600 dark:hover:text-emerald-400",
                     )}
                 >
                     <span
@@ -143,7 +144,7 @@ const Header = () => {
                                     "transition-all duration-200",
                                     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                                     isActive
-                                        ? "bg-white/80 dark:bg-white/15 text-violet-600 dark:text-violet-300 shadow-sm"
+                                        ? "bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 shadow-sm"
                                         : "text-muted-foreground hover:text-foreground hover:bg-white/40 dark:hover:bg-white/10",
                                 )}
                             >
@@ -166,7 +167,7 @@ const Header = () => {
                             "apple-glass-subtle px-3 sm:px-4",
                             "text-sm font-medium",
                             "transition-all duration-200",
-                            "hover:scale-[1.02] hover:border-violet-400/50 hover:text-violet-500 dark:hover:text-violet-400",
+                            "hover:scale-[1.02] hover:border-emerald-400/50 hover:text-emerald-600 dark:hover:text-emerald-400",
                             "focus-visible:outline-none",
                             "focus-visible:ring-2 focus-visible:ring-ring",
                         )}
@@ -176,7 +177,7 @@ const Header = () => {
                     </Link>
 
                     {/* Mobile Liquid Glass Menu Toggle */}
-                    <button
+                    <GlassButton
                         type="button"
                         onClick={() => setIsMobileMenuOpen((prev) => !prev)}
                         aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
@@ -185,7 +186,7 @@ const Header = () => {
                             "flex size-9 items-center justify-center rounded-full lg:hidden",
                             "apple-glass-subtle text-foreground/80",
                             "transition-all duration-200 active:scale-95",
-                            "hover:text-violet-500 dark:hover:text-violet-400",
+                            "hover:text-emerald-600 dark:hover:text-emerald-400",
                             "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                         )}
                     >
@@ -194,7 +195,7 @@ const Header = () => {
                         ) : (
                             <Menu size={19} aria-hidden="true" />
                         )}
-                    </button>
+                    </GlassButton>
                 </div>
             </div>
 
@@ -221,7 +222,7 @@ const Header = () => {
                                         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                                         "active:scale-[0.98]",
                                         isActive
-                                            ? "bg-white/80 dark:bg-white/20 text-violet-600 dark:text-violet-300 shadow-sm border border-white/40 dark:border-white/10"
+                                            ? "bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 shadow-sm border border-emerald-500/20"
                                             : "text-muted-foreground hover:bg-white/40 dark:hover:bg-white/10 hover:text-foreground",
                                     )}
                                 >

@@ -4,9 +4,11 @@ import { contactInfo, personalInfo } from "../../data/portfolioData";
 import { Github } from "../../utils/github";
 import useResend from "../../hooks/useResend";
 import { cx } from "../../utils/cx";
+import GlassButton from "../GlassButton";
+import { glassHover } from "../../utils/utils";
 
 const inputClass =
-    "w-full rounded-xl border border-border/60 bg-background/50 px-4 py-3 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground/70 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/15";
+    "w-full rounded-xl border border-border/60 bg-background/50 px-4 py-3 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground/70 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/15";
 
 export default function Contact() {
     const { sendEmail, loading, success, error, resetStatus } = useResend();
@@ -48,7 +50,7 @@ export default function Contact() {
     };
 
     const socialClass =
-        "inline-flex min-h-11 items-center gap-2 rounded-full apple-glass-subtle px-5 py-2.5 text-sm font-medium text-foreground transition-all duration-200 hover:-translate-y-0.5 hover:text-indigo-500 dark:hover:text-indigo-400";
+        cx("inline-flex min-h-11 items-center gap-2 rounded-full apple-glass-subtle px-5 py-2.5 text-sm font-medium text-foreground", glassHover);
 
     return (
         <section id="contact" className="scroll-mt-24 px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
@@ -56,12 +58,12 @@ export default function Contact() {
                 <div className="relative overflow-hidden rounded-3xl apple-glass p-6 shadow-2xl sm:p-10 lg:p-14">
                     <div
                         aria-hidden="true"
-                        className="pointer-events-none absolute -right-20 -top-24 size-80 rounded-full bg-indigo-500/15 blur-[100px]"
+                        className="pointer-events-none absolute -right-20 -top-24 size-80 rounded-full bg-emerald-500/12 blur-[100px]"
                     />
 
                     <div className="relative grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-14">
                         <div className="flex flex-col">
-                            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-indigo-500 dark:text-indigo-400">
+                            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-emerald-700 dark:text-emerald-400">
                                 Get in Touch
                             </p>
 
@@ -78,7 +80,7 @@ export default function Contact() {
 
                             <div className="mt-6 flex items-center gap-2 text-sm text-muted-foreground">
                                 <div className="flex size-8 items-center justify-center rounded-full apple-glass-subtle">
-                                    <MapPin className="size-4 text-indigo-500 dark:text-indigo-400" />
+                                    <MapPin className="size-4 text-emerald-700 dark:text-emerald-400" />
                                 </div>
                                 {personalInfo.location}
                             </div>
@@ -89,7 +91,7 @@ export default function Contact() {
                                         href={contactInfo.github}
                                         target="_blank"
                                         rel="noreferrer"
-                                        className="inline-flex min-h-11 items-center gap-2 rounded-full bg-foreground px-5 py-2.5 text-sm font-semibold text-background transition-all duration-200 hover:-translate-y-0.5 hover:opacity-90"
+                                        className={cx("inline-flex min-h-11 items-center gap-2 rounded-full bg-foreground px-5 py-2.5 text-sm font-semibold text-background", glassHover)}
                                     >
                                         <Github className="size-4" />
                                         GitHub
@@ -266,10 +268,10 @@ export default function Contact() {
                                 </div>
                             )}
 
-                            <button
+                            <GlassButton
                                 type="submit"
                                 disabled={loading}
-                                className="mt-6 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-indigo-600 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-indigo-600/20 transition-all duration-200 hover:bg-indigo-500 disabled:cursor-not-allowed disabled:opacity-60"
+                                className="mt-6 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-foreground px-5 py-3 text-sm font-semibold text-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
                             >
                                 {loading ? (
                                     <>
@@ -282,7 +284,7 @@ export default function Contact() {
                                         ส่งข้อความ
                                     </>
                                 )}
-                            </button>
+                            </GlassButton>
                         </form>
                     </div>
                 </div>

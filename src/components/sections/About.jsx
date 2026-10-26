@@ -1,6 +1,7 @@
 import { ArrowUpRight, Code2, MonitorCog, Network, Quote } from "lucide-react";
 import { personalInfo } from "../../data/portfolioData";
 import { cx } from "../../utils/cx";
+import { glassHover } from "../../utils/utils";
 
 const strengths = [
     {
@@ -35,7 +36,7 @@ export default function About() {
             <div className="mx-auto max-w-7xl">
                 <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-end lg:gap-16">
                     <div>
-                        <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-indigo-400">
+                        <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-emerald-700 dark:text-emerald-400">
                             About Me
                         </p>
 
@@ -44,7 +45,7 @@ export default function About() {
                         </h2>
 
                         <div className="mt-6 flex items-center gap-3">
-                            <span className="h-px w-10 bg-indigo-500" />
+                            <span className="h-px w-10 bg-emerald-500" />
                             <span className="text-sm font-medium text-muted-foreground">
                                 IT · Infrastructure · Development
                             </span>
@@ -58,7 +59,7 @@ export default function About() {
 
                 <div className="mb-6 mt-14 flex flex-wrap items-end justify-between gap-4 sm:mt-16">
                     <div>
-                        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-indigo-400">What I Do</p>
+                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-700 dark:text-emerald-400">What I Do</p>
                         <h3 className="mt-2 text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
                             Areas of expertise
                         </h3>
@@ -76,7 +77,7 @@ export default function About() {
                             className="group flex h-full min-w-0 flex-col rounded-3xl apple-glass apple-glass-interactive p-6 sm:p-7"
                         >
                             <div className="flex items-center justify-between">
-                                <div className="flex size-12 items-center justify-center rounded-2xl apple-glass-subtle text-indigo-500 transition-transform duration-300 group-hover:scale-105 dark:text-indigo-400">
+                                <div className="flex size-12 items-center justify-center rounded-2xl apple-glass-subtle text-emerald-700 transition-transform duration-300 group-hover:scale-105 dark:text-emerald-400">
                                     <Icon className="size-5" />
                                 </div>
 
@@ -110,7 +111,7 @@ export default function About() {
                     />
 
                     <div className="relative flex flex-col gap-5 sm:flex-row sm:items-start sm:gap-6">
-                        <div className="flex size-11 shrink-0 items-center justify-center rounded-2xl apple-glass-subtle text-indigo-500 dark:text-indigo-400">
+                        <div className="flex size-11 shrink-0 items-center justify-center rounded-2xl apple-glass-subtle text-emerald-700 dark:text-emerald-400">
                             <Quote className="size-5" />
                         </div>
 
@@ -121,7 +122,7 @@ export default function About() {
 
                             <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-muted-foreground">
                                 <span>{personalInfo.location}</span>
-                                <span aria-hidden="true" className="size-1 rounded-full bg-indigo-400" />
+                                <span aria-hidden="true" className="size-1 rounded-full bg-emerald-500" />
                                 <span>{personalInfo.interests.join(" / ")}</span>
                             </div>
                         </div>
@@ -131,9 +132,8 @@ export default function About() {
                 <a
                     href="#contact"
                     className={cx(
-                        "mt-7 inline-flex min-h-11 items-center gap-2 rounded-full apple-glass-subtle px-5 py-2.5 text-sm font-medium text-foreground",
-                        "transition-colors hover:text-indigo-500 dark:hover:text-indigo-400",
-                        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400",
+                        "mt-7 inline-flex min-h-11 items-center gap-2 rounded-full apple-glass-subtle px-5 py-2.5 text-sm font-medium text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400",
+                        glassHover,
                     )}
                 >
                     มาพูดคุยกัน

@@ -27,7 +27,7 @@ const AppShell = ({ children }) => {
             className={cx(
                 "relative isolate min-h-screen overflow-clip",
                 "bg-background text-foreground antialiased",
-                "selection:bg-violet-500/30 selection:text-foreground",
+                "selection:bg-emerald-500/30 selection:text-foreground",
             )}
         >
             {/* Ambient background fluid mesh glow for Apple liquid glass refraction */}
@@ -35,7 +35,7 @@ const AppShell = ({ children }) => {
                 aria-hidden="true"
                 className={cx(
                     "pointer-events-none fixed -left-40 top-10 -z-10",
-                    "size-[500px] rounded-full bg-gradient-to-tr from-violet-600/25 to-fuchsia-600/15 blur-[120px]",
+                    "size-[500px] rounded-full bg-gradient-to-tr from-emerald-600/20 to-lime-500/10 blur-[120px]",
                     "opacity-75 dark:opacity-40 animate-pulse",
                 )}
             />
@@ -44,7 +44,7 @@ const AppShell = ({ children }) => {
                 aria-hidden="true"
                 className={cx(
                     "pointer-events-none fixed -right-40 top-1/3 -z-10",
-                    "size-[550px] rounded-full bg-gradient-to-bl from-blue-600/20 via-indigo-500/15 to-cyan-400/15 blur-[140px]",
+                    "size-[550px] rounded-full bg-gradient-to-bl from-emerald-600/15 via-green-500/10 to-lime-400/10 blur-[140px]",
                     "opacity-75 dark:opacity-35",
                 )}
             />
@@ -53,7 +53,7 @@ const AppShell = ({ children }) => {
                 aria-hidden="true"
                 className={cx(
                     "pointer-events-none fixed left-1/4 bottom-10 -z-10",
-                    "size-[450px] rounded-full bg-gradient-to-tr from-purple-500/15 to-sky-400/10 blur-[130px]",
+                    "size-[450px] rounded-full bg-gradient-to-tr from-lime-500/12 to-emerald-400/10 blur-[130px]",
                     "opacity-60 dark:opacity-25",
                 )}
             />
@@ -82,7 +82,7 @@ const AppShell = ({ children }) => {
 
                     <p className="flex items-center gap-2">
                         Built with React &amp; Tailwind CSS
-                        <span aria-hidden="true" className="text-violet-400">
+                        <span aria-hidden="true" className="text-emerald-500">
                             ◆
                         </span>
                     </p>

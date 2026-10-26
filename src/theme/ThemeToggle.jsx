@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useTheme } from "../hooks/useTheme";
 import { cx } from "../utils/cx";
 import { Sun, Moon, Monitor } from "lucide-react";
+import GlassButton from "../components/GlassButton";
 
 const SunIcon = () => <Sun size={20} aria-hidden="true" />;
 
@@ -87,7 +88,7 @@ const ThemeToggle = () => {
                   const isActive = theme === value;
 
                   return (
-                      <button
+                      <GlassButton
                           key={value}
                           type="button"
                           onClick={() => handleThemeChange(value)}
@@ -100,18 +101,18 @@ const ThemeToggle = () => {
                               "transition-all duration-200 cursor-pointer",
                               "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                               isActive
-                                  ? "bg-white/80 dark:bg-white/20 text-violet-600 dark:text-violet-300 shadow-sm"
+                                  ? "bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 shadow-sm"
                                   : "text-muted-foreground hover:bg-white/40 dark:hover:bg-white/10 hover:text-foreground",
                           )}
                       >
                           {icon}
-                      </button>
+                      </GlassButton>
                   );
               })}
           </div>
 
           {/* Current theme */}
-          <button
+          <GlassButton
               type="button"
               aria-label={`Theme: ${currentOption.label}`}
               aria-expanded={isOpen}
@@ -128,7 +129,7 @@ const ThemeToggle = () => {
               )}
           >
               {currentOption.icon}
-          </button>
+          </GlassButton>
       </div>
   );
 };

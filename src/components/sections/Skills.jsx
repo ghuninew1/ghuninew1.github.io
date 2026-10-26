@@ -19,8 +19,9 @@ import {
     CodeXml,
 } from "lucide-react";
 import { techStack } from "../../data/portfolioData";
-import { cx } from "../../utils/cx";
 import { Github } from "../../utils/github";
+import { cx } from "../../utils/cx";
+import { glassHover } from "../../utils/utils";
 
 
 const skillIcons = {
@@ -71,7 +72,7 @@ export default function Skills() {
             <div className="mx-auto max-w-7xl">
                 <div className="grid gap-6 lg:grid-cols-[1fr_0.7fr] lg:items-end">
                     <div className="max-w-2xl">
-                        <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-indigo-400">
+                        <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-emerald-700 dark:text-emerald-400">
                             Skills & Technologies
                         </p>
 
@@ -96,7 +97,7 @@ export default function Skills() {
                         >
                             <div className="flex items-start justify-between gap-4">
                                 <div className="flex items-center gap-3">
-                                    <div className="flex size-11 shrink-0 items-center justify-center rounded-2xl apple-glass-subtle text-indigo-500 transition-transform duration-300 group-hover:scale-105 dark:text-indigo-400">
+                                    <div className="flex size-11 shrink-0 items-center justify-center rounded-2xl apple-glass-subtle text-emerald-700 transition-transform duration-300 group-hover:scale-105 dark:text-emerald-400">
                                         <Layers3 className="size-5" />
                                     </div>
 
@@ -122,7 +123,7 @@ export default function Skills() {
                                     return (
                                         <div
                                             key={tech.name}
-                                            className="flex min-w-0 items-start justify-between gap-3 rounded-2xl border border-border/50 bg-background/35 p-4 transition-colors duration-200 hover:border-indigo-500/30 hover:bg-background/60"
+                                            className="flex min-w-0 items-start justify-between gap-3 rounded-2xl border border-border/50 bg-background/35 p-4 transition-colors duration-200 hover:border-emerald-500/30 hover:bg-background/60"
                                         >
                                             <div className="min-w-0 flex-1">
                                                 <h4 className="text-sm font-semibold text-foreground">{tech.name}</h4>
@@ -134,7 +135,7 @@ export default function Skills() {
                                                 )}
                                             </div>
 
-                                            <div className="flex size-10 shrink-0 items-center justify-center rounded-xl apple-glass-subtle text-indigo-500 transition-transform duration-300 group-hover:scale-105 dark:text-indigo-400">
+                                            <div className="flex size-10 shrink-0 items-center justify-center rounded-xl apple-glass-subtle text-emerald-700 transition-transform duration-300 group-hover:scale-105 dark:text-emerald-400">
                                                 <Icon className="size-5" aria-hidden="true" />
                                             </div>
                                         </div>
@@ -147,7 +148,7 @@ export default function Skills() {
 
                 <div className="mt-6 flex flex-col gap-4 rounded-3xl apple-glass p-5 sm:flex-row sm:items-center sm:justify-between sm:p-7">
                     <div className="flex items-start gap-3">
-                        <div className="flex size-10 shrink-0 items-center justify-center rounded-xl apple-glass-subtle text-indigo-500 dark:text-indigo-400">
+                        <div className="flex size-10 shrink-0 items-center justify-center rounded-xl apple-glass-subtle text-emerald-700 dark:text-emerald-400">
                             <Code2 className="size-5" />
                         </div>
 
@@ -161,7 +162,7 @@ export default function Skills() {
 
                     <a
                         href="#projects"
-                        className="inline-flex min-h-10 shrink-0 items-center gap-2 self-start rounded-full apple-glass-subtle px-4 py-2 text-sm font-medium text-foreground transition-colors hover:text-indigo-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 dark:hover:text-indigo-400 sm:self-center"
+                        className={cx("inline-flex min-h-10 shrink-0 items-center gap-2 self-start rounded-full apple-glass-subtle px-4 py-2 text-sm font-medium text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 sm:self-center", glassHover)}
                     >
                         ดูผลงานของฉัน
                         <ArrowUpRight className="size-4" />

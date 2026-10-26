@@ -21,13 +21,13 @@ function TimelineItem({ item, index }) {
             <div className="relative z-10 flex shrink-0 flex-col items-center">
                 <div
                     className={cx(
-                        "relative flex size-10 items-center justify-center rounded-full border border-indigo-400/30 bg-background text-indigo-500 shadow-lg shadow-indigo-500/10 transition-all duration-500 sm:size-12 dark:text-indigo-400",
-                        isVisible && "scale-100 border-indigo-400/60",
+                        "relative flex size-10 items-center justify-center rounded-full border border-emerald-500/30 bg-background text-emerald-700 shadow-lg shadow-emerald-500/10 transition-all duration-500 sm:size-12 dark:text-emerald-400",
+                        isVisible && "scale-100 border-emerald-400/60",
                     )}
                 >
                     <span
                         className={cx(
-                            "absolute inset-0 rounded-full bg-indigo-500/15 transition-transform duration-700",
+                            "absolute inset-0 rounded-full bg-emerald-500/15 transition-transform duration-700",
                             isVisible ? "scale-100 opacity-100" : "scale-50 opacity-0",
                         )}
                     />
@@ -45,7 +45,7 @@ function TimelineItem({ item, index }) {
                     className={cx(
                         "relative overflow-hidden rounded-3xl apple-glass apple-glass-interactive p-5 sm:p-7",
                         "transition-all duration-300 ease-out",
-                        "hover:-translate-y-1 hover:border-indigo-400/30 hover:shadow-xl hover:shadow-indigo-950/10",
+                        "hover:-translate-y-1 hover:border-emerald-400/30 hover:shadow-xl hover:shadow-emerald-950/10",
                         "motion-reduce:transform-none motion-reduce:transition-none",
                     )}
                 >
@@ -56,7 +56,7 @@ function TimelineItem({ item, index }) {
 
                     <div className="relative">
                         <div className="flex flex-wrap items-center justify-between gap-3">
-                            <span className="inline-flex items-center gap-2 rounded-full apple-glass-subtle px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-indigo-500 dark:text-indigo-400">
+                            <span className="inline-flex items-center gap-2 rounded-full apple-glass-subtle px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-emerald-700 dark:text-emerald-400">
                                 <Sparkles className="size-3.5" />
                                 {item.type}
                             </span>
@@ -71,9 +71,9 @@ function TimelineItem({ item, index }) {
                             {item.titleTh}
                         </h3>
 
-                        <p className="mt-1 text-sm font-medium text-indigo-500 dark:text-indigo-400">{item.title}</p>
+                        <p className="mt-1 text-sm font-medium text-emerald-700 dark:text-emerald-400">{item.title}</p>
 
-                        <div className="my-4 h-px w-full bg-gradient-to-r from-indigo-500/30 via-border/60 to-transparent" />
+                        <div className="my-4 h-px w-full bg-gradient-to-r from-emerald-500/30 via-border/60 to-transparent" />
 
                         <p className="text-sm leading-7 text-muted-foreground">{item.description}</p>
                     </div>
@@ -91,7 +91,7 @@ export default function Timeline() {
         <section id="timeline" className="scroll-mt-24 px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
             <div className="mx-auto max-w-7xl">
                 <div className="mb-12 max-w-2xl sm:mb-14">
-                    <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-indigo-400">My Journey</p>
+                    <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-emerald-700 dark:text-emerald-400">My Journey</p>
 
                     <h2 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
                         Learning by building.
@@ -109,7 +109,7 @@ export default function Timeline() {
                     >
                         <div
                             ref={lineRef}
-                            className="h-full w-full origin-top bg-gradient-to-b from-indigo-500 via-violet-400/70 to-indigo-500/0 transition-transform duration-1000 ease-out motion-reduce:transition-none"
+                            className="h-full w-full origin-top bg-gradient-to-b from-emerald-500 via-lime-400/70 to-emerald-500/0 transition-transform duration-1000 ease-out motion-reduce:transition-none"
                             style={{
                                 transform: isVisible ? "scaleY(1)" : "scaleY(0)",
                             }}
