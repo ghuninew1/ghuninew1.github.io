@@ -538,3 +538,29 @@ body {
 .section {
     @apply scroll-mt-24 px-5 py-20 sm:px-8 lg:px-12 lg:py-28;
 }
+
+/* Keep the shared button's glass reflections visible on light and dark controls. */
+.glass-button::before {
+    background: linear-gradient(
+        135deg,
+        color-mix(in oklch, currentColor 28%, transparent) 0%,
+        transparent 40%,
+        color-mix(in oklch, currentColor 12%, transparent) 100%
+    );
+}
+
+.glass-button::after {
+    background: radial-gradient(
+        90px circle at var(--mx) var(--my),
+        color-mix(in oklch, currentColor 40%, transparent),
+        color-mix(in oklch, currentColor 14%, transparent) 45%,
+        transparent 75%
+    );
+}
+
+.glass-button:where(:hover, :focus-visible):not(:disabled, [aria-disabled="true"]) {
+    box-shadow: inset 0 1px 0 color-mix(in oklch, currentColor 34%, transparent),
+        inset 0 -1px 0 color-mix(in oklch, currentColor 12%, transparent),
+        inset 0 0 0 1px color-mix(in oklch, currentColor 22%, transparent),
+        0 6px 20px -6px rgb(0 0 0 / 25%);
+}
