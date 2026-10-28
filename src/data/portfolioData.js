@@ -146,6 +146,37 @@ export const projects = [
         demoUrl: "https://issuedesk.bigbrain-studio.com/",
         featured: true,
     },
+    {
+        id: "web-bbs-twcss",
+        title: "web-bbs-twcss",
+        subtitle: "Big Brain Studio - Official Website",
+        category: "Web Application",
+        status: "Completed",
+
+        problem: "web bbs-twcss อย่างเป็นทางการของ Big Brain Studio",
+        approach: "พัฒนาเว็บแอปพลิเคชันอย่างเป็นทางการของ Big Brain Studio",
+        outcome: "ได้เว็บแอปพลิเคชันอย่างเป็นทางการของ Big Brain Studio",
+        description: "web-bbs-twcss เป็นเว็บแอปพลิเคชันอย่างเป็นทางการของ Big Brain Studio ",
+
+        descriptionEn: "",
+
+        highlights: [
+            "Home & Showreel: แสดงผลงานวิดีโอ Showreel ล่าสุดผ่านระบบ Video Embed พร้อมส่วนจัดแสดงพันธมิตรและลูกค้า",
+            " Studio & Story: ถ่ายทอดเรื่องราว ประวัติความเป็นมา ทีมงาน วิสัยทัศน์ และวัฒนธรรมของสตูดิโอ พร้อมเอฟเฟกต์การเปลี่ยนผ่าน (Custom Animations)",
+            "Our Work (Portfolio Showcase)",
+            "Services: แสดงขอบข่ายการบริการด้าน Creative Design, 2D/3D Animation, VFX, Multimedia Production",
+            "News & Activities: ระบบกระจายข่าวสารและอัปเดตกิจกรรม ",
+            "Jobs & Careers: ประกาศรับสมัครบุคลากรร่วมทีม แสดงตำแหน่ง คุณสมบัติ และรายละเอียดการสมัคร",
+            "Announcements: ข้อมูลและประกาศข่าวสารสำคัญจากทางสตูดิโอ",
+            "Contact Us: ข้อมูลที่อยู่สำนักงาน แผนที่ ช่องทางติดต่อด่วน และลิงก์โซเชียลมีเดียครบวงจร",
+        ],
+
+        tags: ["React", "React Router", "Tailwind CSS v4", "Vite", "Cloudflare Pages"],
+
+        githubUrl: "https://github.com/web-bbs-twcss",
+        demoUrl: "https://www.bigbrain-studio.com/",
+        featured: true,
+    },
 
     {
         id: "react-image-converter",
