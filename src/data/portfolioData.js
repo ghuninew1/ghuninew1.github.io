@@ -51,55 +51,37 @@ export const techStack = [
     {
         name: "React",
         category: "Frontend",
-        description: "Component-based UI development",
+        description: "Web application development",
         color: "from-cyan-500/20 to-blue-500/20",
     },
     {
         name: "JavaScript",
         category: "Frontend",
-        description: "Interactive web applications",
+        description: "Modern JavaScript development",
         color: "from-yellow-500/20 to-amber-500/20",
     },
     {
         name: "Tailwind CSS",
         category: "Frontend",
-        description: "Responsive utility-first styling",
+        description: "Responsive UI development",
         color: "from-teal-500/20 to-cyan-500/20",
-    },
-    {
-        name: "Vite",
-        category: "Frontend",
-        description: "Modern frontend development",
-        color: "from-purple-500/20 to-violet-500/20",
     },
     {
         name: "Git & GitHub",
         category: "Deployment",
-        description: "Version control and source code",
+        description: "Version control and project management",
         color: "from-slate-500/20 to-gray-500/20",
     },
     {
-        name: "Cloudflare Pages",
-        category: "Deployment",
-        description: "Frontend hosting and deployment",
+        name: "Cloudflare",
+        category: "Platform",
+        description: "Pages, Workers and D1",
         color: "from-orange-500/20 to-amber-500/20",
     },
     {
-        name: "Cloudflare D1",
-        category: "Database",
-        description: "SQL database for web applications",
-        color: "from-orange-500/20 to-red-500/20",
-    },
-    {
-        name: "Linux & OS",
-        category: "Technical Support",
-        description: "System troubleshooting and administration",
-        color: "from-blue-500/20 to-indigo-500/20",
-    },
-    {
-        name: "Networking & VPN",
+        name: "Networking",
         category: "Infrastructure",
-        description: "Network configuration and connectivity troubleshooting",
+        description: "MikroTik, VPN and network systems",
         color: "from-emerald-500/20 to-teal-500/20",
     },
     {
@@ -120,36 +102,7 @@ export const techStack = [
         description: "NAS administration, SSH access, and storage services",
         color: "from-red-500/20 to-orange-500/20",
     },
-    {
-        name: "MikroTik RouterOS",
-        category: "Networking",
-        description: "Router configuration, dual-WAN routing, and VPN",
-        color: "from-orange-500/20 to-amber-500/20",
-    },
-    {
-        name: "WireGuard",
-        category: "Networking",
-        description: "VPN connectivity and remote network access",
-        color: "from-emerald-500/20 to-teal-500/20",
-    },
-    {
-        name: "Google Sheets API",
-        category: "Storage & Infrastructure",
-        description: "Integrating spreadsheet data into React applications",
-        color: "from-green-500/20 to-emerald-500/20",
-    },
-    {
-        name: "Web Performance",
-        category: "Optimization",
-        description: "Reducing unnecessary rendering and improving loading performance",
-        color: "from-violet-500/20 to-purple-500/20",
-    },
-    {
-        name: "Web Workers",
-        category: "Browser APIs",
-        description: "Off-main-thread processing for browser-based tools",
-        color: "from-yellow-500/20 to-amber-500/20",
-    },
+
 ];
 
 
@@ -164,8 +117,7 @@ export const projects = [
         problem: "ติดตามปัญหา IT และข้อมูลอุปกรณ์ให้เป็นระบบเดียวกันได้ยาก",
         approach: "พัฒนาเว็บแอปสำหรับแจ้งปัญหา เชื่อมข้อมูลอุปกรณ์ และจัดการรูปภาพผ่าน Storage API",
         outcome: "ได้ workflow สำหรับติดตามงานและข้อมูลอุปกรณ์ โดยยังอยู่ระหว่างพัฒนา",
-        description:
-            "เว็บแอปพลิเคชันสำหรับแจ้งและติดตามปัญหา IT ภายในองค์กร พร้อมพัฒนาระบบจัดการข้อมูลอุปกรณ์และเครื่องมือจัดการรูปภาพผ่าน Storage API",
+        description: "ระบบสำหรับแจ้งและติดตามปัญหา IT จัดการข้อมูลอุปกรณ์ และเครื่องมือสำหรับงาน IT ภายในองค์กร",
 
         descriptionEn:
             "An office IT management application for issue tracking, asset data, and image storage workflows.",
@@ -191,7 +143,7 @@ export const projects = [
         ],
 
         githubUrl: "https://github.com/ghuninew1",
-        demoUrl: null,
+        demoUrl: "https://issuedesk.bigbrain-studio.com/",
         featured: true,
     },
 
@@ -222,7 +174,7 @@ export const projects = [
         tags: ["React", "Vite", "Tailwind CSS v4", "JavaScript", "Web Workers", "AVIF", "JSZip"],
 
         githubUrl: "https://github.com/ghuninew1/React-Image-Converter",
-        demoUrl: null,
+        demoUrl: "https://image-converter.bigbrain-studio.com/",
         featured: true,
     },
 
@@ -235,9 +187,9 @@ export const projects = [
 
         problem: "ต้องการสำรวจรูปแบบ UI สำหรับจัดระเบียบไฟล์และ workflow อัปโหลดใน private cloud",
         approach: "ทำต้นแบบหน้าจอจัดการไฟล์ มีโฟลเดอร์ breadcrumb คิวอัปโหลด และ Drag and Drop",
-        outcome: "ต้นแบบ UI สำหรับทดลองประสบการณ์จัดการไฟล์ โดยโปรเจกต์พักการพัฒนาอยู่",
-        description:
-            "ต้นแบบ UI สำหรับจัดการไฟล์ส่วนตัวที่ได้รับแรงบันดาลใจจาก Nextcloud มีระบบนำทาง โฟลเดอร์ การจัดการไฟล์ คิวอัปโหลด และ Drag and Drop",
+        outcome:
+            "ระบบ Private Cloud สำหรับจัดการไฟล์ โฟลเดอร์ การอัปโหลด และพื้นที่จัดเก็บข้อมูลผ่านเว็บ โดยโปรเจกต์พักการพัฒนาอยู่",
+        description: "ระบบ Private Cloud สำหรับจัดการไฟล์ โฟลเดอร์ การอัปโหลด และพื้นที่จัดเก็บข้อมูลผ่านเว็บ",
 
         descriptionEn:
             "A private-cloud-inspired file management interface focused on file organization and upload workflows.",
@@ -250,11 +202,11 @@ export const projects = [
             "Responsive layout with theme support",
         ],
 
-        tags: ["React", "Vite", "Tailwind CSS v4", "Cloudflare Pages", "Wrangler"],
+        tags: ["React", "Storage", "Tailwind CSS v4", "Cloudflare Pages", "Docker"],
 
-        githubUrl: "https://github.com/ghuninew1",
-        demoUrl: null,
-        featured: false,
+        githubUrl: "https://github.com/ghuninew1/nexora",
+        demoUrl: "https://nexora.bigbrain-studio.com/files",
+        featured: true,
     },
 ];
 
@@ -267,7 +219,7 @@ export const timeline = [
         titleTh: "งานดูแลระบบและสนับสนุนด้าน IT",
         description:
             "ดูแลและแก้ไขปัญหาคอมพิวเตอร์ ซอฟต์แวร์ อุปกรณ์สำนักงาน และระบบเครือข่าย เพื่อให้ผู้ใช้ทำงานได้อย่างต่อเนื่อง",
-        type: "Professional Focus",
+        type: "IT",
     },
     {
         id: "network-infrastructure",
@@ -280,8 +232,7 @@ export const timeline = [
         id: "web-development",
         title: "React & Frontend Development",
         titleTh: "การพัฒนาเว็บไซต์และ Frontend",
-        description:
-            "พัฒนา UI ด้วย React, Vite และ Tailwind CSS โดยเน้น Responsive Design การแยก Component และโค้ดที่ดูแลรักษาต่อได้",
+        description: "พัฒนา Web Application ด้วย React และเทคโนโลยีเว็บสมัยใหม่ โดยเน้นระบบที่ใช้งานได้จริง",
         type: "Development",
     },
     {
