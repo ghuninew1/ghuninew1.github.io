@@ -173,7 +173,7 @@ export const projects = [
 
         tags: ["React", "React Router", "Tailwind CSS v4", "Vite", "Cloudflare Pages"],
 
-        githubUrl: "https://github.com/web-bbs-twcss",
+        githubUrl: "https://github.com/ghuninew1/web-bbs-twcss",
         demoUrl: "https://www.bigbrain-studio.com/",
         featured: true,
     },
