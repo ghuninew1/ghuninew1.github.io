@@ -1,3 +1,5 @@
+import { NavHighlight } from "./NavHighlight";
+import { useNavHighlight } from "./useNavHighlight";
 import { useState, useEffect, useRef } from "react";
 import { Menu, X } from "lucide-react";
 import { cx } from "../../utils/cx";
@@ -12,6 +14,7 @@ import GlassButton from "../GlassButton";
 
 const Header = () => {
     const activeSection = useActiveSection();
+    const { highlight, ...highlightEvents } = useNavHighlight();
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isVisible, setIsVisible] = useState(true);
     const lastScrollY = useRef(0);
@@ -130,22 +133,24 @@ const Header = () => {
                 </Link>
 
                 {/* Desktop Navigation Pill */}
-                <nav aria-label="Main navigation" className="hidden items-center gap-1 rounded-full px-3 py-1.5 apple-glass-subtle lg:flex">
+                <nav aria-label="Main navigation" {...highlightEvents} className="relative hidden items-center gap-1 rounded-full px-3 py-1.5 apple-glass-subtle lg:flex">
+                    <NavHighlight highlight={highlight} />
                     {navigation.map(({ label, href }) => {
                         const isActive = activeSection === href.slice(1);
                         return (
                             <Link
                                 key={href}
+                                data-nav-highlight
                                 to={href}
                                 aria-current={isActive ? "location" : undefined}
                                 onClick={(event) => handleScroll(event, href.slice(1))}
                                 className={cx(
-                                    "rounded-full px-3.5 py-1 text-sm font-medium",
+                                    "relative rounded-full px-3.5 py-1 text-sm font-medium",
                                     "transition-all duration-200",
                                     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                                     isActive
                                         ? "bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 shadow-sm"
-                                        : "text-muted-foreground hover:text-foreground hover:bg-white/40 dark:hover:bg-white/10",
+                                        : "text-muted-foreground hover:text-foreground",
                                 )}
                             >
                                 {label}

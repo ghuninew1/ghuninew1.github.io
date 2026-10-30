@@ -1,3 +1,5 @@
+import { NavHighlight } from "./NavHighlight";
+import { useNavHighlight } from "./useNavHighlight";
 import { useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { cx } from "../../utils/cx";
@@ -8,6 +10,7 @@ import GlassButton from "../GlassButton";
 
 const Sidebar = ({ isMobileOpen, onMobileOpen, onMobileClose }) => {
     const activeSection = useActiveSection();
+    const { highlight, ...highlightEvents } = useNavHighlight();
 
     useEffect(() => {
         if (!isMobileOpen) return;
@@ -43,16 +46,19 @@ const Sidebar = ({ isMobileOpen, onMobileOpen, onMobileClose }) => {
             >
                 <nav
                     aria-label="Portfolio sections"
+                    {...highlightEvents}
                     className={cx(
-                        "flex flex-col items-center gap-2 rounded-2xl p-2",
+                        "relative flex flex-col items-center gap-2 rounded-2xl p-2",
                         "apple-glass border shadow-2xl",
                     )}
                 >
+                    <NavHighlight highlight={highlight} />
                     {navigation.map(({ label, href, icon: Icon }) => {
                         const isActive = activeSection === href.slice(1);
                         return (
                             <Link
                                 key={href}
+                                data-nav-highlight
                                 to={href}
                                 title={label}
                                 onClick={(event) => handleScroll(event, href.slice(1))}
@@ -65,7 +71,7 @@ const Sidebar = ({ isMobileOpen, onMobileOpen, onMobileClose }) => {
                                     "active:scale-90",
                                     isActive
                                         ? "bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 shadow-sm border border-emerald-500/20"
-                                        : "text-muted-foreground hover:bg-white/40 dark:hover:bg-white/10 hover:text-foreground",
+                                        : "text-muted-foreground hover:text-foreground",
                                 )}
                             >
                                 <Icon size={19} aria-hidden="true" />
