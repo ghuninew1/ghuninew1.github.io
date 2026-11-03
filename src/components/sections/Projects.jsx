@@ -1,3 +1,5 @@
+import MotionReveal from "../motion/MotionReveal";
+import { motion, useReducedMotion } from "motion/react";
 
 import { ArrowUpRight, ExternalLink, FolderGit2, LayoutDashboard, Search, Bell, Settings } from "lucide-react";
 import { projects } from "../../data/portfolioData";
@@ -137,9 +139,15 @@ function ProjectMockup({ project, featured = false }) {
 
 function ProjectCard({ project, index }) {
     const featured = index === 0;
+    const reduced = useReducedMotion();
 
     return (
-        <article
+        <motion.article
+            initial={reduced ? false : { opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.15 }}
+            whileHover={reduced ? undefined : { y: -5, scale: 1.01 }}
+            transition={{ duration: 0.5, delay: Math.min(index * 0.06, 0.24) }}
             className={cx(
                 "group flex min-w-0 flex-col overflow-hidden rounded-3xl apple-glass apple-glass-interactive",
                 featured && "lg:col-span-2",
@@ -147,7 +155,7 @@ function ProjectCard({ project, index }) {
         >
             {featured ? (
                 <div className="grid items-center gap-6 p-4 sm:gap-8 sm:p-6 lg:grid-cols-[1.05fr_0.95fr] lg:p-8">
-                    <ProjectMockup project={project} featured />
+                    <div className="overflow-hidden rounded-2xl"><div className="transition-transform duration-500 motion-safe:group-hover:scale-[1.04]"><ProjectMockup project={project} featured /></div></div>
                     <div className="flex min-w-0 flex-col py-2 sm:py-4">
                         <ProjectDetails
                             project={project}
@@ -159,14 +167,14 @@ function ProjectCard({ project, index }) {
             ) : (
                 <>
                     <div className="p-3 pb-0 sm:p-4 sm:pb-0">
-                        <ProjectMockup project={project} />
+                        <div className="overflow-hidden rounded-2xl"><div className="transition-transform duration-500 motion-safe:group-hover:scale-[1.04]"><ProjectMockup project={project} /></div></div>
                     </div>
                     <div className="flex flex-1 flex-col p-5 sm:p-6">
                         <ProjectDetails project={project} index={index} />
                     </div>
                 </>
             )}
-        </article>
+        </motion.article>
     );
 }
 
@@ -282,7 +290,7 @@ export default function Projects() {
             className="scroll-mt-24 px-5 py-20 sm:px-8 lg:px-12 lg:py-28"
         >
             <div className="mx-auto max-w-7xl">
-                <div className="mb-10 max-w-2xl sm:mb-12">
+                <MotionReveal className="mb-10 max-w-2xl sm:mb-12">
                     <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-emerald-700 dark:text-emerald-400">
                         Selected Work
                     </p>
@@ -292,7 +300,7 @@ export default function Projects() {
                     <p className="mt-5 leading-8 text-muted-foreground">
                         ตัวอย่างโปรเจกต์ที่สะท้อนความสนใจด้านการพัฒนาเว็บและการแก้ปัญหาด้วยเทคโนโลยี
                     </p>
-                </div>
+                </MotionReveal>
 
                 <div className="grid gap-5 sm:gap-6 lg:grid-cols-2">
                     {projects.map((project, index) => (

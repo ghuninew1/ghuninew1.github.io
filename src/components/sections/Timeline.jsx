@@ -1,3 +1,4 @@
+import { motion, useReducedMotion } from "motion/react";
 import { useRef } from "react";
 import { ArrowDownRight, CircleDot, CalendarDays, Sparkles } from "lucide-react";
 import { timeline } from "../../data/portfolioData";
@@ -5,42 +6,35 @@ import { cx } from "../../utils/cx";
 import useObserver from "../../hooks/useObserver";
 
 function TimelineItem({ item, index }) {
-    const ref = useRef(null);
-    const isVisible = useObserver(ref, "0px 0px -80px 0px", 0.1);
-
+    const reduced = useReducedMotion();
     return (
-        <article
-            ref={ref}
-            className={cx(
-                "group relative flex gap-4 sm:gap-7",
-                "transition-[opacity,transform] duration-700 ease-out motion-reduce:transition-none",
-                isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0",
-            )}
-            style={{ transitionDelay: `${index * 100}ms` }}
+        <motion.article
+            initial={reduced ? false : "hidden"}
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.15 }}
+            variants={{ hidden: { opacity: 0, x: -16 }, visible: { opacity: 1, x: 0 } }}
+            transition={{ duration: 0.55 }}
+            className="group relative flex gap-4 sm:gap-7"
         >
-            <div className="relative z-10 flex shrink-0 flex-col items-center">
-                <div
-                    className={cx(
-                        "relative flex size-10 items-center justify-center rounded-full border border-emerald-500/30 bg-background text-emerald-700 shadow-lg shadow-emerald-500/10 transition-all duration-500 sm:size-12 dark:text-emerald-400",
-                        isVisible && "scale-100 border-emerald-400/60",
-                    )}
+            <div className="z-10 relative flex flex-col items-center shrink-0">
+                <motion.div
+                    variants={reduced ? undefined : { hidden: { opacity: 0, scale: 0.7 }, visible: { opacity: 1, scale: 1 } }}
+                    transition={{ duration: 0.4 }}
+                    className="relative flex size-10 items-center justify-center rounded-full border border-emerald-500/30 bg-background text-emerald-700 shadow-lg shadow-emerald-500/10 sm:size-12 dark:text-emerald-400"
                 >
                     <span
                         className={cx(
                             "absolute inset-0 rounded-full bg-emerald-500/15 transition-transform duration-700",
-                            isVisible ? "scale-100 opacity-100" : "scale-50 opacity-0",
+                            "scale-100 opacity-100",
                         )}
                     />
                     <CircleDot
-                        className={cx(
-                            "relative size-5 transition-transform duration-500 sm:size-6",
-                            isVisible && "rotate-90",
-                        )}
+                        className={cx("relative size-5 transition-transform duration-500 sm:size-6", "rotate-90")}
                     />
-                </div>
+                </motion.div>
             </div>
 
-            <div className="min-w-0 flex-1 pb-8 sm:pb-10">
+            <div className="flex-1 pb-8 sm:pb-10 min-w-0">
                 <div
                     className={cx(
                         "relative overflow-hidden rounded-3xl apple-glass apple-glass-interactive p-5 sm:p-7",
@@ -51,84 +45,84 @@ function TimelineItem({ item, index }) {
                 >
                     <div
                         aria-hidden="true"
-                        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(99,102,241,0.09),transparent_55%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                        className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(99,102,241,0.09),transparent_55%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
                     />
 
                     <div className="relative">
-                        <div className="flex flex-wrap items-center justify-between gap-3">
-                            <span className="inline-flex items-center gap-2 rounded-full apple-glass-subtle px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-emerald-700 dark:text-emerald-400">
+                        <div className="flex flex-wrap justify-between items-center gap-3">
+                            <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full font-semibold text-emerald-700 dark:text-emerald-400 text-xs uppercase tracking-wider apple-glass-subtle">
                                 <Sparkles className="size-3.5" />
                                 {item.type}
                             </span>
 
-                            <span className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground/60">
+                            <span className="flex items-center gap-1.5 font-medium text-muted-foreground/60 text-xs">
                                 <CalendarDays className="size-3.5" />
                                 {String(index + 1).padStart(2, "0")}
                             </span>
                         </div>
 
-                        <h3 className="mt-5 text-lg font-semibold tracking-tight text-foreground sm:text-xl">
+                        <h3 className="mt-5 font-semibold text-foreground text-lg sm:text-xl tracking-tight">
                             {item.titleTh}
                         </h3>
 
-                        <p className="mt-1 text-sm font-medium text-emerald-700 dark:text-emerald-400">{item.title}</p>
+                        <p className="mt-1 font-medium text-emerald-700 dark:text-emerald-400 text-sm">{item.title}</p>
 
-                        <div className="my-4 h-px w-full bg-gradient-to-r from-emerald-500/30 via-border/60 to-transparent" />
+                        <div className="bg-gradient-to-r from-emerald-500/30 to-transparent my-4 via-border/60 w-full h-px" />
 
-                        <p className="text-sm leading-7 text-muted-foreground">{item.description}</p>
+                        <p className="text-muted-foreground text-sm leading-7">{item.description}</p>
                     </div>
                 </div>
             </div>
-        </article>
+        </motion.article>
     );
 }
 
 export default function Timeline() {
-    const lineRef = useRef(null);
-    const isVisible = useObserver(lineRef, "0px 0px -100px 0px", 0.1);
+    const ref = useRef(null);
+    const visible = useObserver(ref, "0px 0px -65% 0px", 0);
 
     return (
-        <section id="timeline" className="scroll-mt-24 px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
+        <section id="timeline" className="px-5 sm:px-8 lg:px-12 py-20 lg:py-28 scroll-mt-24">
             <div className="mx-auto max-w-7xl">
-                <div className="mb-12 max-w-2xl sm:mb-14">
-                    <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-emerald-700 dark:text-emerald-400">My Journey</p>
+                <div className="mb-12 sm:mb-14 max-w-2xl">
+                    <p className="mb-3 font-semibold text-emerald-700 dark:text-emerald-400 text-sm uppercase tracking-[0.2em]">
+                        My Journey
+                    </p>
 
-                    <h2 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
+                    <h2 className="font-semibold text-foreground text-3xl sm:text-4xl lg:text-5xl tracking-tight">
                         Learning by building.
                     </h2>
 
-                    <p className="mt-5 leading-8 text-muted-foreground">
+                    <p className="mt-5 text-muted-foreground leading-8">
                         เส้นทางการพัฒนาทักษะและการสร้างโปรเจกต์อย่างต่อเนื่อง
                     </p>
                 </div>
 
-                <div className="relative">
+                <div ref={ref} className="relative">
                     <div
                         aria-hidden="true"
-                        className="absolute bottom-10 left-[19px] top-5 w-px overflow-hidden bg-border/50 sm:left-[23px]"
+                        className="top-5 bottom-10 left-[19px] sm:left-[23px] absolute bg-border/50 w-px overflow-hidden"
                     >
                         <div
-                            ref={lineRef}
-                            className="h-full w-full origin-top bg-gradient-to-b from-emerald-500 via-lime-400/70 to-emerald-500/0 transition-transform duration-1000 ease-out motion-reduce:transition-none"
-                            style={{
-                                transform: isVisible ? "scaleY(1)" : "scaleY(0)",
-                            }}
+                            className={cx(
+                                "h-full w-full origin-top bg-gradient-to-b from-emerald-500 via-lime-400/70 to-emerald-500/40 transition-transform duration-700 ease-out motion-reduce:scale-y-100 motion-reduce:transition-none",
+                                visible ? "scale-y-100" : "scale-y-0",
+                            )}
                         />
                     </div>
-
-                    <div className="space-y-0">
+                    <div className="relative flex flex-col gap-8 sm:gap-10 pl-3">
                         {timeline.map((item, index) => (
                             <TimelineItem key={item.id} item={item} index={index} />
                         ))}
                     </div>
                 </div>
 
-                <div className="mt-2 flex items-center gap-3 pl-1">
-                    <div className="flex size-9 shrink-0 items-center justify-center rounded-full apple-glass-subtle text-indigo-400">
+                <div className="flex items-center gap-3 mt-2 pl-1">
+                    <div className="flex justify-center items-center rounded-full size-9 text-indigo-400 shrink-0 apple-glass-subtle">
                         <ArrowDownRight className="size-4" />
                     </div>
 
-                    <p className="text-sm leading-6 text-muted-foreground">ยังคงเรียนรู้ ทดลอง และพัฒนาต่อไป</p>
+                    <p className="text-muted-foreground text-sm leading-6">ยังคงเรียนรู้ ทดลอง และพัฒนาต่อไป</p>
                 </div>
             </div>
         </section>

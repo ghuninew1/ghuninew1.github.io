@@ -1,3 +1,4 @@
+import { motion, useReducedMotion } from "motion/react";
 import {
     Layers3,
     ArrowUpRight,
@@ -53,6 +54,7 @@ function getSkillIcon(name) {
 }
 
 export default function Skills() {
+    const reduced = useReducedMotion();
     const categories = techStack.reduce((groups, tech) => {
         const category = tech.category || "Other";
 
@@ -88,8 +90,13 @@ export default function Skills() {
 
                 <div className="mt-10 grid gap-5 sm:mt-12 lg:grid-cols-2">
                     {categoryEntries.map(([category, skills], index) => (
-                        <article
+                        <motion.article
                             key={category}
+                            initial={reduced ? false : { opacity: 0, y: 24 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, amount: 0.15 }}
+                            whileHover={reduced ? undefined : { y: -5, scale: 1.01 }}
+                            transition={{ duration: 0.5, delay: Math.min(index * 0.06, 0.24) }}
                             className={cx(
                                 "group flex min-w-0 flex-col rounded-3xl apple-glass apple-glass-interactive p-5 sm:p-7",
                                 index === 0 && categoryEntries.length % 2 !== 0 ? "lg:col-span-2" : "",
@@ -142,7 +149,7 @@ export default function Skills() {
                                     );
                                 })}
                             </div>
-                        </article>
+                        </motion.article>
                     ))}
                 </div>
 

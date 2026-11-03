@@ -1,3 +1,5 @@
+import { useSyncExternalStore } from "react";
+import { motion, useReducedMotion } from "motion/react";
 import { ArrowUpRight, Code2, MonitorCog, Network, Quote } from "lucide-react";
 import { personalInfo } from "../../data/portfolioData";
 import { cx } from "../../utils/cx";
@@ -30,12 +32,29 @@ const strengths = [
     },
 ];
 
+const desktopQuery = "(min-width: 1024px)";
+function subscribeDesktop(callback) {
+    const query = window.matchMedia(desktopQuery);
+    query.addEventListener("change", callback);
+    return () => query.removeEventListener("change", callback);
+}
+function getDesktop() { return window.matchMedia(desktopQuery).matches; }
+function getServerDesktop() { return false; }
+
 export default function About() {
+    const desktop = useSyncExternalStore(subscribeDesktop, getDesktop, getServerDesktop);
+    const reduced = useReducedMotion();
+    const reveal = (direction) => ({
+        initial: reduced ? false : desktop ? { opacity: 0, x: direction * 24 } : { opacity: 0, y: 20 },
+        whileInView: { opacity: 1, x: 0, y: 0 },
+        viewport: { once: true, amount: 0.15 },
+        transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] },
+    });
     return (
         <section id="about" className="scroll-mt-24 px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
             <div className="mx-auto max-w-7xl">
                 <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-end lg:gap-16">
-                    <div>
+                    <motion.div {...reveal(-1)}>
                         <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-emerald-700 dark:text-emerald-400">
                             About Me
                         </p>
@@ -50,11 +69,11 @@ export default function About() {
                                 IT · Infrastructure · Development
                             </span>
                         </div>
-                    </div>
+                    </motion.div>
 
-                    <div className="rounded-3xl apple-glass p-6 sm:p-8">
+                    <motion.div {...reveal(1)} whileHover={reduced ? undefined : { y: -3 }} className="rounded-3xl apple-glass p-6 sm:p-8">
                         <p className="text-base leading-8 text-muted-foreground sm:text-lg">{personalInfo.aboutText}</p>
-                    </div>
+                    </motion.div>
                 </div>
 
                 <div className="mb-6 mt-14 flex flex-wrap items-end justify-between gap-4 sm:mt-16">
