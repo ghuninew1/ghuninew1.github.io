@@ -101,8 +101,8 @@ const Sidebar = ({ isMobileOpen, onMobileOpen, onMobileClose }) => {
             <div className="lg:hidden bottom-5 left-4 z-50 fixed animate-fadeInUp">
                 <GlassButton
                     type="button"
-                    onClick={onMobileOpen}
-                    aria-label="Open section navigation"
+                    onClick={isMobileOpen ? onMobileClose : onMobileOpen}
+                    aria-label={isMobileOpen ? "Close section navigation" : "Open section navigation"}
                     aria-expanded={isMobileOpen}
                     aria-controls="mobile-section-navigation"
                     className={cx(
