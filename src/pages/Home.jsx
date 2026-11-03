@@ -130,8 +130,10 @@ export default function Home() {
                                 aria-hidden="true"
                                 className="absolute inset-8 bg-gradient-to-br from-blue-500/20 via-indigo-500/20 to-violet-500/20 blur-3xl rounded-full"
                             />
+                            <div style={{ perspective: 1000 }}>
+                            <div className="profile-frame-float">
                             <motion.div
-                                style={{ x: cardX, y: cardY, rotateX, rotateY, transformPerspective: 1000 }}
+                                style={{ x: cardX, y: cardY, rotateX, rotateY, transformStyle: "preserve-3d" }}
                                 onPointerMove={(event) => {
                                     if (!canMove(event)) return;
                                     const bounds = event.currentTarget.getBoundingClientRect();
@@ -139,19 +141,25 @@ export default function Home() {
                                     tiltX.set(-((event.clientY - bounds.top) / bounds.height - 0.5) * 6);
                                 }}
                                 onPointerLeave={() => { tiltX.set(0); tiltY.set(0); }}
-                                className="relative bg-card/70 shadow-2xl shadow-indigo-950/10 backdrop-blur-xl p-3 border border-border/60 rounded-[2rem] overflow-hidden">
+                                className="relative rounded-[2rem]">
+                                <div aria-hidden="true" className="pointer-events-none absolute inset-0 rounded-[2rem] border border-emerald-500/20 bg-slate-900/65 shadow-xl shadow-slate-950/20" style={{ transform: "translate3d(6px, 8px, -10px)" }} />
+                                <div className="rounded-[2rem] border border-border/60 bg-card/90 p-3 shadow-2xl shadow-indigo-950/10" style={{ transformStyle: "preserve-3d" }}>
                                 <img
                                     src={ProfileImage}
                                     alt="GhuniNew"
                                     className="rounded-[1.5rem] w-full object-cover aspect-[4/5]"
+                                    style={{ transform: "translateZ(10px)" }}
                                 />
-                                <div className="bottom-3 absolute inset-x-3 bg-gradient-to-t from-black/75 via-black/35 to-transparent px-6 pt-16 pb-6 rounded-b-[1.5rem] text-white">
+                                <div style={{ transform: "translateZ(16px)" }} className="bottom-3 absolute inset-x-3 bg-gradient-to-t from-black/75 via-black/35 to-transparent px-6 pt-16 pb-6 rounded-b-[1.5rem] text-white">
                                     <p className="font-semibold text-lg">GhuniNew</p>
                                     <p className="mt-1 text-white/75 text-sm">
                                         Connecting IT infrastructure with modern web solutions.
                                     </p>
                                 </div>
+                                </div>
                             </motion.div>
+                            </div>
+                            </div>
                         </div>
                     </div>
                 </div>

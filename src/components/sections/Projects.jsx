@@ -130,6 +130,7 @@ function ProjectMockup({ project, featured = false }) {
                 </div>
             </div>
 
+            <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-40 transition-opacity duration-500 group-hover:opacity-70" />
             <div className="absolute bottom-5 right-5 rounded-full border border-white/10 bg-black/70 px-2.5 py-1 text-[9px] font-medium tracking-wide text-white/55 backdrop-blur sm:bottom-6 sm:right-6">
                 CONCEPT PREVIEW
             </div>
@@ -143,11 +144,9 @@ function ProjectCard({ project, index }) {
 
     return (
         <motion.article
-            initial={reduced ? false : { opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.15 }}
+            variants={{ hidden: { opacity: 0, y: reduced ? 0 : 24 }, visible: { opacity: 1, y: 0 } }}
             whileHover={reduced ? undefined : { y: -5, scale: 1.01 }}
-            transition={{ duration: 0.5, delay: Math.min(index * 0.06, 0.24) }}
+            transition={{ duration: 0.55 }}
             className={cx(
                 "group flex min-w-0 flex-col overflow-hidden rounded-3xl apple-glass apple-glass-interactive",
                 featured && "lg:col-span-2",
@@ -196,7 +195,7 @@ function ProjectDetails({ project, index, featured = false }) {
 
             <h3
                 className={cx(
-                    "mt-2 font-semibold tracking-tight text-foreground",
+                    "mt-2 font-semibold tracking-tight text-foreground transition-transform duration-300 motion-safe:group-hover:translate-x-[3px]",
                     featured ? "text-2xl sm:text-3xl" : "text-xl sm:text-2xl",
                 )}
             >
@@ -263,7 +262,7 @@ function ProjectDetails({ project, index, featured = false }) {
                     >
                         <Github className="size-4" />
                         GitHub
-                        <ArrowUpRight className="size-3.5" />
+                        <ArrowUpRight className="size-3.5 transition-transform duration-300 motion-safe:group-hover:translate-x-[3px]" />
                     </a>
                 )}
 
@@ -275,7 +274,7 @@ function ProjectDetails({ project, index, featured = false }) {
                         className={cx("inline-flex min-h-10 items-center gap-2 rounded-full bg-foreground px-5 py-2 text-sm font-semibold text-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400", glassHover)}
                     >
                         Live Demo
-                        <ExternalLink className="size-4" />
+                        <ExternalLink className="size-4 transition-transform duration-300 motion-safe:group-hover:translate-x-[3px]" />
                     </a>
                 )}
             </div>
@@ -302,7 +301,7 @@ export default function Projects() {
                     </p>
                 </MotionReveal>
 
-                <div className="grid gap-5 sm:gap-6 lg:grid-cols-2">
+                <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={{ visible: { transition: { delayChildren: 0.12, staggerChildren: 0.06 } } }} className="grid gap-5 sm:gap-6 lg:grid-cols-2">
                     {projects.map((project, index) => (
                         <ProjectCard
                             key={project.id}
@@ -310,7 +309,7 @@ export default function Projects() {
                             index={index}
                         />
                     ))}
-                </div>
+                </motion.div>
             </div>
         </section>
     );
