@@ -12,6 +12,8 @@ Personal portfolio สำหรับแสดงผลงานและทั�
 - Sections สำหรับ About, Skills, Projects, Timeline และ Contact
 - แสดงรายละเอียดโปรเจกต์พร้อมปัญหา แนวทาง และผลลัพธ์
 - Navigation ที่เน้น Section ปัจจุบัน พร้อมเมนูสำหรับมือถือ
+- ฟอร์มติดต่อที่ส่งข้อความผ่าน IssueDesk Resend API
+- ภาพโปรไฟล์แบบ interactive และฉาก Three.js ใน Hero
 - ธีม Light / Dark / System และจดจำตัวเลือกในเบราว์เซอร์
 - รองรับการเคลื่อนไหวแบบลดลงตามการตั้งค่า `prefers-reduced-motion`
 - รองรับการ deploy เป็นเว็บไซต์ static บน Cloudflare Pages
@@ -21,6 +23,7 @@ Personal portfolio สำหรับแสดงผลงานและทั�
 - React 19 และ React Router
 - Vite 8
 - Tailwind CSS v4
+- Motion, Three.js และ React Three Fiber
 - Lucide React
 - GSAP และ ScrollTrigger สำหรับเอฟเฟกต์การเลื่อนบางส่วน
 - Cloudflare Wrangler สำหรับ preview และ deploy
@@ -65,7 +68,7 @@ src/
 │   └── sections/     # About, Skills, Projects, Timeline และ Contact
 ├── data/             # ข้อมูล Portfolio และรายการโปรเจกต์
 ├── hooks/            # Hooks สำหรับธีม การเลื่อน และ utilities
-├── pages/            # หน้า Home และ Login/Register
+├── pages/            # หน้า Home
 ├── theme/            # ตัวควบคุมธีม
 └── assets/           # รูปภาพและ asset ของเว็บไซต์
 ```
@@ -79,9 +82,9 @@ src/
 ## หมายเหตุเรื่อง API และการตั้งค่า
 
 - โปรเจกต์มีโค้ดตัวอย่างสำหรับเรียก Google Sheets API ใน `src/hooks/useGoogleSheet.js` ซึ่งปัจจุบันใช้ค่า placeholder (`YOUR_SPREADSHEET_ID` และ `YOUR_API_KEY`) และไม่ควรเปิดใช้งานจนกว่าจะตั้งค่าให้ถูกต้อง
-- หน้า Login/Register เรียก endpoint `/api/auth/login` และ `/api/auth/register`; endpoint เหล่านี้ต้องมี backend/API ที่ให้บริการแยกต่างหาก
-- ไฟล์ `wrangler.jsonc` ตั้งค่า output directory สำหรับ Cloudflare Pages เป็น `dist`
+- ฟอร์ม Contact ส่งข้อมูลไปยัง IssueDesk Resend API ที่กำหนดใน `src/hooks/useResend.js` โดยบริการปลายทางต้องพร้อมใช้งานและอนุญาต origin ของเว็บไซต์
+- หาก deploy ใต้ path ย่อย ให้กำหนด `VITE_BASE_PATH` ก่อน build เช่น `/portfolio/`; ค่าเริ่มต้นคือ `/`
 
 ## License
 
-ยังไม่ได้ระบุ License สำหรับการนำโค้ดไปใช้ซ้ำ กรุณาติดต่อเจ้าของโปรเจกต์ก่อนนำไปเผยแพร่หรือนำไปใช้ต่อ
+เผยแพร่ภายใต้ [MIT License](LICENSE)
