@@ -43,7 +43,7 @@ function App() {
 
     return (
         <>
-        <div ref={progressRef} className="scroll-progress" aria-hidden="true" />
+        <div ref={progressRef} className="pointer-events-none fixed left-0 top-0 z-[100] h-[3px] w-full origin-left scale-x-0 bg-[linear-gradient(90deg,#54d8ff,#edb746,#8cffc7)] will-change-transform" aria-hidden="true" />
         <Routes>
             <Route
                 path="/"
