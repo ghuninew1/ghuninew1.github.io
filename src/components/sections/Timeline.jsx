@@ -12,7 +12,7 @@ function TimelineItem({ item, index }) {
             initial={reduced ? false : "hidden"}
             whileInView="visible"
             viewport={{ once: true, amount: 0.15 }}
-            variants={{ hidden: { opacity: 0, x: -16 }, visible: { opacity: 1, x: 0 } }}
+            variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
             transition={{ duration: 0.55 }}
             className="group relative flex gap-4 sm:gap-7"
         >
@@ -37,9 +37,9 @@ function TimelineItem({ item, index }) {
             <div className="flex-1 pb-8 sm:pb-10 min-w-0">
                 <div
                     className={cx(
-                        "relative overflow-hidden rounded-3xl apple-glass apple-glass-interactive p-5 sm:p-7",
+                        "relative overflow-hidden rounded-sm apple-glass apple-glass-interactive p-5 sm:p-7",
                         "transition-all duration-300 ease-out",
-                        "hover:-translate-y-1 hover:border-emerald-400/30 hover:shadow-xl hover:shadow-emerald-950/10",
+                        "motion-safe:hover:-translate-y-1 motion-safe:hover:scale-[1.005] hover:border-emerald-400/30 hover:shadow-xl hover:shadow-emerald-950/10",
                         "motion-reduce:transform-none motion-reduce:transition-none",
                     )}
                 >
@@ -77,6 +77,15 @@ function TimelineItem({ item, index }) {
     );
 }
 
+function TimelineHeading({ children }) {
+    const reduced = useReducedMotion();
+    return (
+        <motion.div initial={reduced ? false : { opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }} className="mb-12 sm:mb-14 max-w-2xl">
+            {children}
+        </motion.div>
+    );
+}
+
 export default function Timeline() {
     const ref = useRef(null);
     const visible = useObserver(ref, "0px 0px -65% 0px", 0);
@@ -84,7 +93,7 @@ export default function Timeline() {
     return (
         <section id="timeline" className="px-5 sm:px-8 lg:px-12 py-20 lg:py-28 scroll-mt-24">
             <div className="mx-auto max-w-7xl">
-                <div className="mb-12 sm:mb-14 max-w-2xl">
+                <TimelineHeading>
                     <p className="mb-3 font-semibold text-emerald-700 dark:text-emerald-400 text-sm uppercase tracking-[0.2em]">
                         My Journey
                     </p>
@@ -96,12 +105,12 @@ export default function Timeline() {
                     <p className="mt-5 text-muted-foreground leading-8">
                         เส้นทางการพัฒนาทักษะและการสร้างโปรเจกต์อย่างต่อเนื่อง
                     </p>
-                </div>
+                </TimelineHeading>
 
                 <div ref={ref} className="relative">
                     <div
                         aria-hidden="true"
-                        className="top-5 bottom-10 left-[19px] sm:left-[23px] absolute bg-border/50 w-px overflow-hidden"
+                        className="top-5 bottom-10 left-[31px] sm:left-[35px] absolute bg-border/50 w-px overflow-hidden"
                     >
                         <div
                             className={cx(

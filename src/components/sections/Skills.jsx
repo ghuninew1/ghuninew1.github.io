@@ -72,7 +72,7 @@ export default function Skills() {
     return (
         <section id="skills" className="scroll-mt-24 px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
             <div className="mx-auto max-w-7xl">
-                <div className="grid gap-6 lg:grid-cols-[1fr_0.7fr] lg:items-end">
+                <motion.div initial={reduced ? false : { opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.55 }} className="grid gap-6 lg:grid-cols-[1fr_0.7fr] lg:items-end">
                     <div className="max-w-2xl">
                         <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-emerald-700 dark:text-emerald-400">
                             Skills & Technologies
@@ -86,25 +86,23 @@ export default function Skills() {
                     <p className="max-w-xl leading-7 text-muted-foreground lg:justify-self-end">
                         เทคโนโลยีและเครื่องมือที่ใช้ในการพัฒนาเว็บ ดูแลระบบ IT และแก้ไขปัญหาในการทำงานจริง
                     </p>
-                </div>
+                </motion.div>
 
-                <div className="mt-10 grid gap-5 sm:mt-12 lg:grid-cols-2">
+                <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={{ visible: { transition: { delayChildren: 0.12, staggerChildren: 0.06 } } }} className="mt-10 grid gap-5 sm:mt-12 lg:grid-cols-2">
                     {categoryEntries.map(([category, skills], index) => (
                         <motion.article
                             key={category}
-                            initial={reduced ? false : { opacity: 0, y: 24 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, amount: 0.15 }}
+                            variants={{ hidden: { opacity: 0, y: reduced ? 0 : 24 }, visible: { opacity: 1, y: 0 } }}
                             whileHover={reduced ? undefined : { y: -5, scale: 1.01 }}
-                            transition={{ duration: 0.5, delay: Math.min(index * 0.06, 0.24) }}
+                            transition={{ duration: 0.55 }}
                             className={cx(
-                                "group flex min-w-0 flex-col rounded-3xl apple-glass apple-glass-interactive p-5 sm:p-7",
+                                "group flex min-w-0 flex-col rounded-sm apple-glass apple-glass-interactive p-5 sm:p-7",
                                 index === 0 && categoryEntries.length % 2 !== 0 ? "lg:col-span-2" : "",
                             )}
                         >
                             <div className="flex items-start justify-between gap-4">
                                 <div className="flex items-center gap-3">
-                                    <div className="flex size-11 shrink-0 items-center justify-center rounded-2xl apple-glass-subtle text-emerald-700 transition-transform duration-300 group-hover:scale-105 dark:text-emerald-400">
+                                    <div className="flex size-11 shrink-0 items-center justify-center rounded-sm apple-glass-subtle text-emerald-700 transition-transform duration-300 motion-safe:group-hover:scale-105 dark:text-emerald-400">
                                         <Layers3 className="size-5" />
                                     </div>
 
@@ -130,10 +128,10 @@ export default function Skills() {
                                     return (
                                         <div
                                             key={tech.name}
-                                            className="flex min-w-0 items-start justify-between gap-3 rounded-2xl border border-border/50 bg-background/35 p-4 transition-colors duration-200 hover:border-emerald-500/30 hover:bg-background/60"
+                                            className="flex min-w-0 items-start justify-between gap-3 rounded-sm border border-border/50 bg-background/35 p-4 transition-colors duration-200 hover:border-emerald-500/30 hover:bg-background/60"
                                         >
                                             <div className="min-w-0 flex-1">
-                                                <h4 className="text-sm font-semibold text-foreground">{tech.name}</h4>
+                                                <h4 className="text-sm font-semibold text-foreground transition-colors duration-200 group-hover:text-emerald-700 dark:group-hover:text-emerald-400">{tech.name}</h4>
 
                                                 {tech.description && (
                                                     <p className="mt-1.5 text-xs leading-5 text-muted-foreground">
@@ -142,7 +140,7 @@ export default function Skills() {
                                                 )}
                                             </div>
 
-                                            <div className="flex size-10 shrink-0 items-center justify-center rounded-xl apple-glass-subtle text-emerald-700 transition-transform duration-300 group-hover:scale-105 dark:text-emerald-400">
+                                            <div className="flex size-10 shrink-0 items-center justify-center rounded-xl apple-glass-subtle text-emerald-700 transition-transform duration-300 motion-safe:group-hover:scale-105 dark:text-emerald-400">
                                                 <Icon className="size-5" aria-hidden="true" />
                                             </div>
                                         </div>
@@ -151,9 +149,9 @@ export default function Skills() {
                             </div>
                         </motion.article>
                     ))}
-                </div>
+                </motion.div>
 
-                <div className="mt-6 flex flex-col gap-4 rounded-3xl apple-glass p-5 sm:flex-row sm:items-center sm:justify-between sm:p-7">
+                <div className="mt-6 flex flex-col gap-4 rounded-sm apple-glass p-5 sm:flex-row sm:items-center sm:justify-between sm:p-7">
                     <div className="flex items-start gap-3">
                         <div className="flex size-10 shrink-0 items-center justify-center rounded-xl apple-glass-subtle text-emerald-700 dark:text-emerald-400">
                             <Code2 className="size-5" />

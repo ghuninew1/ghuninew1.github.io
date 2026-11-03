@@ -102,7 +102,7 @@ export default function LoginRegister() {
 
             {/* Floating Notification Toast */}
             {toastMessage && (
-                <div className="fixed top-6 right-6 z-50 flex items-center gap-3 apple-glass text-foreground px-5 py-3 rounded-2xl shadow-2xl animate-bounce">
+                <div className="fixed top-6 right-6 z-50 flex items-center gap-3 apple-glass text-foreground px-5 py-3 rounded-sm shadow-2xl animate-bounce">
                     <Sparkles className="w-5 h-5 text-emerald-500" />
                     <span className="text-sm font-medium">{toastMessage}</span>
                 </div>
@@ -128,7 +128,7 @@ export default function LoginRegister() {
                     thickness={1.2}
                     borderRadius={24}
                 >
-                    <div className="relative apple-glass rounded-3xl p-8 shadow-2xl transition-all duration-500">
+                    <div className="relative apple-glass rounded-sm p-8 shadow-2xl transition-all duration-500">
                         {/* Neon Top Edge Accent */}
                         <div className="absolute -top-[1px] left-12 right-12 h-[2px] bg-gradient-to-r from-transparent via-cyan-400 to-purple-500 rounded-full" />
 
@@ -160,7 +160,7 @@ export default function LoginRegister() {
                                                 value={loginEmail}
                                                 onChange={(e) => setLoginEmail(e.target.value)}
                                                 placeholder="name@company.com"
-                                                className="w-full pl-11 pr-4 py-3 bg-background/55 border border-border/70 rounded-2xl text-foreground placeholder:text-muted-foreground text-sm focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all duration-200"
+                                                className="w-full pl-11 pr-4 py-3 bg-background/55 border border-border/70 rounded-sm text-foreground placeholder:text-muted-foreground text-sm focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all duration-200"
                                             />
                                         </div>
                                     </div>
@@ -188,7 +188,7 @@ export default function LoginRegister() {
                                                 value={loginPassword}
                                                 onChange={(e) => setLoginPassword(e.target.value)}
                                                 placeholder="••••••••"
-                                                className="w-full pl-11 pr-11 py-3 bg-background/55 border border-border/70 rounded-2xl text-foreground placeholder:text-muted-foreground text-sm focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all duration-200"
+                                                className="w-full pl-11 pr-11 py-3 bg-background/55 border border-border/70 rounded-sm text-foreground placeholder:text-muted-foreground text-sm focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all duration-200"
                                             />
                                             <GlassButton
                                                 aria-label={showLoginPassword ? "Hide password" : "Show password"}
@@ -209,7 +209,7 @@ export default function LoginRegister() {
                                     <GlassButton
                                         type="submit"
                                         disabled={isSubmitting}
-                                        className="w-full py-3.5 px-4 mt-2 bg-foreground text-background font-semibold rounded-2xl flex items-center justify-center gap-2 group"
+                                        className="w-full py-3.5 px-4 mt-2 bg-foreground text-background font-semibold rounded-sm flex items-center justify-center gap-2 group"
                                     >
                                         <span>{isSubmitting ? "PLEASE WAIT…" : "LOGIN"}</span>
                                         <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -234,7 +234,7 @@ export default function LoginRegister() {
                                     <GlassButton
                                         type="button"
                                         onClick={() => handleSocialAuth("Google")}
-                                        className="w-full py-3 px-4 apple-glass-subtle text-foreground font-medium rounded-2xl text-sm flex items-center justify-center gap-3 group"
+                                        className="w-full py-3 px-4 apple-glass-subtle text-foreground font-medium rounded-sm text-sm flex items-center justify-center gap-3 group"
                                     >
                                         {/* Google Custom SVG Icon */}
                                         <svg className="w-5 h-5" viewBox="0 0 24 24">
@@ -262,7 +262,7 @@ export default function LoginRegister() {
                                     <GlassButton
                                         type="button"
                                         onClick={() => handleSocialAuth("Facebook")}
-                                        className="w-full py-3 px-4 apple-glass-subtle text-foreground font-medium rounded-2xl text-sm flex items-center justify-center gap-3 group"
+                                        className="w-full py-3 px-4 apple-glass-subtle text-foreground font-medium rounded-sm text-sm flex items-center justify-center gap-3 group"
                                     >
                                         {/* Facebook SVG Icon */}
                                         <svg className="w-5 h-5 fill-[#1877F2]" viewBox="0 0 24 24">
@@ -317,7 +317,7 @@ export default function LoginRegister() {
                                                 value={regName}
                                                 onChange={(e) => setRegName(e.target.value)}
                                                 placeholder="Alpha Beta"
-                                                className="w-full pl-11 pr-4 py-3 bg-background/55 border border-border/70 rounded-2xl text-foreground placeholder:text-muted-foreground text-sm focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all duration-200"
+                                                className="w-full pl-11 pr-4 py-3 bg-background/55 border border-border/70 rounded-sm text-foreground placeholder:text-muted-foreground text-sm focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all duration-200"
                                             />
                                         </div>
                                     </div>
@@ -336,7 +336,7 @@ export default function LoginRegister() {
                                                 value={regEmail}
                                                 onChange={(e) => setRegEmail(e.target.value)}
                                                 placeholder="email@company.com"
-                                                className="w-full pl-11 pr-4 py-3 bg-background/55 border border-border/70 rounded-2xl text-foreground placeholder:text-muted-foreground text-sm focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all duration-200"
+                                                className="w-full pl-11 pr-4 py-3 bg-background/55 border border-border/70 rounded-sm text-foreground placeholder:text-muted-foreground text-sm focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all duration-200"
                                             />
                                         </div>
                                     </div>
@@ -358,7 +358,7 @@ export default function LoginRegister() {
                                                 value={regPassword}
                                                 onChange={(e) => setRegPassword(e.target.value)}
                                                 placeholder="••••••••"
-                                                className="w-full pl-11 pr-11 py-3 bg-background/55 border border-border/70 rounded-2xl text-foreground placeholder:text-muted-foreground text-sm focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all duration-200"
+                                                className="w-full pl-11 pr-11 py-3 bg-background/55 border border-border/70 rounded-sm text-foreground placeholder:text-muted-foreground text-sm focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all duration-200"
                                             />
                                             <GlassButton
                                                 aria-label={showRegPassword ? "Hide password" : "Show password"}
@@ -379,7 +379,7 @@ export default function LoginRegister() {
                                     <GlassButton
                                         type="submit"
                                         disabled={isSubmitting}
-                                        className="w-full py-3.5 px-4 mt-2 bg-foreground text-background font-semibold rounded-2xl flex items-center justify-center gap-2 group"
+                                        className="w-full py-3.5 px-4 mt-2 bg-foreground text-background font-semibold rounded-sm flex items-center justify-center gap-2 group"
                                     >
                                         <span>{isSubmitting ? "PLEASE WAIT…" : "REGISTER"}</span>
                                         <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -404,7 +404,7 @@ export default function LoginRegister() {
                                     <GlassButton
                                         type="button"
                                         onClick={() => handleSocialAuth("Google")}
-                                        className="w-full py-3 px-4 apple-glass-subtle text-foreground font-medium rounded-2xl text-sm flex items-center justify-center gap-3 group"
+                                        className="w-full py-3 px-4 apple-glass-subtle text-foreground font-medium rounded-sm text-sm flex items-center justify-center gap-3 group"
                                     >
                                         <svg className="w-5 h-5" viewBox="0 0 24 24">
                                             <path
@@ -431,7 +431,7 @@ export default function LoginRegister() {
                                     <GlassButton
                                         type="button"
                                         onClick={() => handleSocialAuth("Facebook")}
-                                        className="w-full py-3 px-4 apple-glass-subtle text-foreground font-medium rounded-2xl text-sm flex items-center justify-center gap-3 group"
+                                        className="w-full py-3 px-4 apple-glass-subtle text-foreground font-medium rounded-sm text-sm flex items-center justify-center gap-3 group"
                                     >
                                         <svg className="w-5 h-5 fill-[#1877F2]" viewBox="0 0 24 24">
                                             <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />

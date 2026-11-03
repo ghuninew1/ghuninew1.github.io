@@ -48,7 +48,7 @@ const Sidebar = ({ isMobileOpen, onMobileOpen, onMobileClose }) => {
                     aria-label="Portfolio sections"
                     {...highlightEvents}
                     className={cx(
-                        "relative flex flex-col items-center gap-2 rounded-2xl p-2",
+                        "relative flex flex-col items-center gap-2 rounded-sm p-2",
                         "apple-glass border shadow-2xl",
                     )}
                 >
@@ -98,7 +98,7 @@ const Sidebar = ({ isMobileOpen, onMobileOpen, onMobileClose }) => {
             </aside>
 
             {/* Mobile floating menu button */}
-            <div className="fixed bottom-5 left-4 z-50 lg:hidden animate-fadeInUp">
+            <div className="lg:hidden bottom-5 left-4 z-50 fixed animate-fadeInUp">
                 <GlassButton
                     type="button"
                     onClick={onMobileOpen}
@@ -106,7 +106,7 @@ const Sidebar = ({ isMobileOpen, onMobileOpen, onMobileClose }) => {
                     aria-expanded={isMobileOpen}
                     aria-controls="mobile-section-navigation"
                     className={cx(
-                        "flex size-12 items-center justify-center rounded-2xl",
+                        "flex size-12 items-center justify-center rounded-sm",
                         "apple-glass text-foreground",
                         "shadow-xl transition-all duration-200",
                         "hover:scale-105 active:scale-95",
@@ -137,20 +137,19 @@ const Sidebar = ({ isMobileOpen, onMobileOpen, onMobileClose }) => {
                         "transition-opacity duration-200",
                         isMobileOpen ? "opacity-100" : "opacity-0",
                     )}
-                >
-                </GlassButton>
+                ></GlassButton>
 
                 <nav
                     id="mobile-section-navigation"
                     aria-label="Portfolio sections"
                     className={cx(
                         "absolute bottom-20 left-4 w-64 max-w-[calc(100vw-2rem)]",
-                        "rounded-3xl apple-glass p-3 shadow-2xl",
+                        "rounded-sm apple-glass p-3 shadow-2xl",
                         "transition-all duration-200 ease-out",
                         isMobileOpen ? "translate-y-0 scale-100 opacity-100" : "translate-y-2 scale-95 opacity-0",
                     )}
                 >
-                    <p className="px-3 pb-3 pt-2 text-xs font-medium uppercase tracking-widest text-muted-foreground">
+                    <p className="px-3 pt-2 pb-3 font-medium text-muted-foreground text-xs uppercase tracking-widest">
                         Navigate
                     </p>
 

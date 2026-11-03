@@ -1,3 +1,4 @@
+import { motion, useReducedMotion } from "motion/react";
 import { useState } from "react";
 import { ArrowUpRight, LoaderCircle, MapPin, Send, CheckCircle2, AlertCircle } from "lucide-react";
 import { contactInfo, personalInfo } from "../../data/portfolioData";
@@ -11,6 +12,8 @@ const inputClass =
     "w-full rounded-xl border border-border/60 bg-background/50 px-4 py-3 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground/70 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/15";
 
 export default function Contact() {
+    const reduced = useReducedMotion();
+    const itemMotion = { hidden: { opacity: 0, y: reduced ? 0 : 16 }, visible: { opacity: 1, y: 0 } };
     const { sendEmail, loading, success, error, resetStatus } = useResend();
     const [form, setForm] = useState({
         name: "",
@@ -49,53 +52,70 @@ export default function Contact() {
         }
     };
 
-    const socialClass =
-        cx("inline-flex min-h-11 items-center gap-2 rounded-full apple-glass-subtle px-5 py-2.5 text-sm font-medium text-foreground", glassHover);
+    const socialClass = cx(
+        "group inline-flex min-h-11 items-center gap-2 rounded-full apple-glass-subtle px-5 py-2.5 text-sm font-medium text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 motion-safe:hover:-translate-y-0.5",
+        glassHover,
+    );
 
     return (
-        <section id="contact" className="scroll-mt-24 px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
+        <section id="contact" className="px-5 sm:px-8 lg:px-12 py-20 lg:py-28 scroll-mt-24">
             <div className="mx-auto max-w-7xl">
-                <div className="relative overflow-hidden rounded-3xl apple-glass p-6 shadow-2xl sm:p-10 lg:p-14">
+                <div className="relative shadow-2xl p-6 sm:p-10 lg:p-14 rounded-sm overflow-hidden apple-glass">
                     <div
                         aria-hidden="true"
-                        className="pointer-events-none absolute -right-20 -top-24 size-80 rounded-full bg-emerald-500/12 blur-[100px]"
+                        className="-top-24 -right-20 absolute bg-emerald-500/12 blur-[100px] rounded-full size-80 pointer-events-none"
                     />
 
-                    <div className="relative grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-14">
-                        <div className="flex flex-col">
-                            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-emerald-700 dark:text-emerald-400">
+                    <div className="relative gap-10 lg:gap-14 grid lg:grid-cols-[0.8fr_1.2fr]">
+                        <motion.div
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true, amount: 0.2 }}
+                            variants={{ visible: { transition: { staggerChildren: 0.06 } } }}
+                            className="flex flex-col"
+                        >
+                            <motion.p
+                                variants={itemMotion}
+                                className="mb-3 font-semibold text-emerald-700 dark:text-emerald-400 text-sm uppercase tracking-[0.2em]"
+                            >
                                 Get in Touch
-                            </p>
+                            </motion.p>
 
-                            <h2 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
+                            <motion.h2
+                                variants={itemMotion}
+                                className="font-semibold text-foreground text-3xl sm:text-4xl lg:text-5xl tracking-tight"
+                            >
                                 Let’s build something useful.
-                            </h2>
+                            </motion.h2>
 
-                            <p className="mt-5 leading-8 text-muted-foreground">
+                            <motion.p variants={itemMotion} className="mt-5 text-muted-foreground leading-8">
                                 สนใจพูดคุยเกี่ยวกับการพัฒนาเว็บไซต์ เทคโนโลยี หรือโปรเจกต์ต่าง ๆ
                                 ส่งข้อความถึงฉันได้จากฟอร์มนี้
-                            </p>
+                            </motion.p>
 
-                            <p className="mt-4 leading-7 text-muted-foreground">{personalInfo.role}</p>
+                            <p className="mt-4 text-muted-foreground leading-7">{personalInfo.role}</p>
 
-                            <div className="mt-6 flex items-center gap-2 text-sm text-muted-foreground">
-                                <div className="flex size-8 items-center justify-center rounded-full apple-glass-subtle">
+                            <div className="flex items-center gap-2 mt-6 text-muted-foreground text-sm">
+                                <div className="flex justify-center items-center rounded-full size-8 apple-glass-subtle">
                                     <MapPin className="size-4 text-emerald-700 dark:text-emerald-400" />
                                 </div>
                                 {personalInfo.location}
                             </div>
 
-                            <div className="mt-8 flex flex-wrap gap-3">
+                            <motion.div variants={itemMotion} className="flex flex-wrap gap-3 mt-8">
                                 {contactInfo.github && (
                                     <a
                                         href={contactInfo.github}
                                         target="_blank"
                                         rel="noreferrer"
-                                        className={cx("inline-flex min-h-11 items-center gap-2 rounded-full bg-foreground px-5 py-2.5 text-sm font-semibold text-background", glassHover)}
+                                        className={cx(
+                                            "group inline-flex min-h-11 items-center gap-2 rounded-full bg-foreground px-5 py-2.5 text-sm font-semibold text-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 motion-safe:hover:-translate-y-0.5",
+                                            glassHover,
+                                        )}
                                     >
                                         <Github className="size-4" />
                                         GitHub
-                                        <ArrowUpRight className="size-4" />
+                                        <ArrowUpRight className="size-4 transition-transform motion-safe:group-hover:translate-x-[3px]" />
                                     </a>
                                 )}
 
@@ -107,7 +127,7 @@ export default function Contact() {
                                         className={socialClass}
                                     >
                                         Facebook
-                                        <ArrowUpRight className="size-4" />
+                                        <ArrowUpRight className="size-4 transition-transform motion-safe:group-hover:translate-x-[3px]" />
                                     </a>
                                 )}
 
@@ -119,35 +139,35 @@ export default function Contact() {
                                         className={socialClass}
                                     >
                                         LinkedIn
-                                        <ArrowUpRight className="size-4" />
+                                        <ArrowUpRight className="size-4 transition-transform motion-safe:group-hover:translate-x-[3px]" />
                                     </a>
                                 )}
 
                                 {contactInfo.email && (
                                     <a href={`mailto:${contactInfo.email}`} className={socialClass}>
                                         Email
-                                        <ArrowUpRight className="size-4" />
+                                        <ArrowUpRight className="size-4 transition-transform motion-safe:group-hover:translate-x-[3px]" />
                                     </a>
                                 )}
-                            </div>
-                        </div>
+                            </motion.div>
+                        </motion.div>
 
                         <form
                             onSubmit={handleSubmit}
-                            className="rounded-2xl border border-border/50 bg-background/35 p-5 backdrop-blur-xl sm:p-7"
+                            className="bg-background/35 backdrop-blur-xl p-5 sm:p-7 border border-border/50 rounded-sm"
                         >
                             <div className="mb-6">
-                                <h3 className="text-xl font-semibold text-foreground">Send me a message</h3>
-                                <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                                <h3 className="font-semibold text-foreground text-xl">Send me a message</h3>
+                                <p className="mt-2 text-muted-foreground text-sm leading-6">
                                     กรอกข้อมูลด้านล่าง แล้วฉันจะได้รับข้อความทางอีเมล
                                 </p>
                             </div>
 
-                            <div className="grid gap-5 sm:grid-cols-2">
+                            <div className="gap-5 grid sm:grid-cols-2">
                                 <div className="min-w-0">
                                     <label
                                         htmlFor="contact-name"
-                                        className="mb-2 block text-sm font-medium text-foreground"
+                                        className="block mb-2 font-medium text-foreground text-sm"
                                     >
                                         ชื่อของคุณ
                                     </label>
@@ -169,7 +189,7 @@ export default function Contact() {
                                 <div className="min-w-0">
                                     <label
                                         htmlFor="contact-email"
-                                        className="mb-2 block text-sm font-medium text-foreground"
+                                        className="block mb-2 font-medium text-foreground text-sm"
                                     >
                                         อีเมล
                                     </label>
@@ -191,7 +211,7 @@ export default function Contact() {
                                 <div className="sm:col-span-2">
                                     <label
                                         htmlFor="contact-subject"
-                                        className="mb-2 block text-sm font-medium text-foreground"
+                                        className="block mb-2 font-medium text-foreground text-sm"
                                     >
                                         หัวข้อ
                                     </label>
@@ -212,7 +232,7 @@ export default function Contact() {
                                 <div className="sm:col-span-2">
                                     <label
                                         htmlFor="contact-message"
-                                        className="mb-2 block text-sm font-medium text-foreground"
+                                        className="block mb-2 font-medium text-foreground text-sm"
                                     >
                                         ข้อความ
                                     </label>
@@ -228,14 +248,14 @@ export default function Contact() {
                                         className={cx(inputClass, "min-h-36 resize-y")}
                                         disabled={loading}
                                     />
-                                    <p className="mt-2 text-right text-xs text-muted-foreground">
+                                    <p className="mt-2 text-muted-foreground text-xs text-right">
                                         {form.message.length}/5000
                                     </p>
                                 </div>
                             </div>
 
                             {/* Honeypot: ซ่อนจากผู้ใช้ แต่บอตพื้นฐานอาจกรอกช่องนี้ */}
-                            <div aria-hidden="true" className="absolute -left-[10000px] h-px w-px overflow-hidden">
+                            <div aria-hidden="true" className="-left-[10000px] absolute w-px h-px overflow-hidden">
                                 <label htmlFor="contact-website">Leave this field empty</label>
                                 <input
                                     id="contact-website"
@@ -249,29 +269,35 @@ export default function Contact() {
                             </div>
 
                             {success && (
-                                <div
+                                <motion.div
+                                    initial={reduced ? false : { opacity: 0, y: 6 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.25 }}
                                     role="status"
-                                    className="mt-5 flex items-start gap-2 rounded-xl border border-emerald-500/20 bg-emerald-500/10 p-3 text-sm text-emerald-600 dark:text-emerald-400"
+                                    className="flex items-start gap-2 bg-emerald-500/10 mt-5 p-3 border border-emerald-500/20 rounded-xl text-emerald-600 dark:text-emerald-400 text-sm"
                                 >
                                     <CheckCircle2 className="mt-0.5 size-4 shrink-0" />
                                     <p>ส่งข้อความสำเร็จแล้ว ขอบคุณที่ติดต่อมา</p>
-                                </div>
+                                </motion.div>
                             )}
 
                             {error && (
-                                <div
+                                <motion.div
+                                    initial={reduced ? false : { opacity: 0, y: 6 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.25 }}
                                     role="alert"
-                                    className="mt-5 flex items-start gap-2 rounded-xl border border-red-500/20 bg-red-500/10 p-3 text-sm text-red-600 dark:text-red-400"
+                                    className="flex items-start gap-2 bg-red-500/10 mt-5 p-3 border border-red-500/20 rounded-xl text-red-600 dark:text-red-400 text-sm"
                                 >
                                     <AlertCircle className="mt-0.5 size-4 shrink-0" />
                                     <p>{error}</p>
-                                </div>
+                                </motion.div>
                             )}
 
                             <GlassButton
                                 type="submit"
                                 disabled={loading}
-                                className="mt-6 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-foreground px-5 py-3 text-sm font-semibold text-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
+                                className="inline-flex justify-center items-center gap-2 bg-foreground mt-6 px-5 py-3 rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 w-full min-h-12 font-semibold text-background text-sm"
                             >
                                 {loading ? (
                                     <>
@@ -289,7 +315,7 @@ export default function Contact() {
                     </div>
                 </div>
 
-                <p className="mt-6 text-center text-xs text-muted-foreground">
+                <p className="mt-6 text-muted-foreground text-xs text-center">
                     {personalInfo.name} · {personalInfo.role}
                 </p>
             </div>

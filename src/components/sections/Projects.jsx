@@ -12,7 +12,7 @@ function ProjectMockup({ project, featured = false }) {
         <div
             aria-label={`Mockup preview for ${project.title}`}
             className={cx(
-                "relative isolate overflow-hidden rounded-2xl border border-border/60 bg-zinc-950 p-3 shadow-inner sm:p-4",
+                "relative isolate overflow-hidden rounded-sm border border-border/60 bg-zinc-950 p-3 shadow-inner sm:p-4",
                 featured ? "aspect-[16/10] lg:aspect-[5/4]" : "aspect-[16/10]",
             )}
         >
@@ -148,13 +148,13 @@ function ProjectCard({ project, index }) {
             whileHover={reduced ? undefined : { y: -5, scale: 1.01 }}
             transition={{ duration: 0.55 }}
             className={cx(
-                "group flex min-w-0 flex-col overflow-hidden rounded-3xl apple-glass apple-glass-interactive",
+                "group flex min-w-0 flex-col overflow-hidden rounded-sm apple-glass apple-glass-interactive",
                 featured && "lg:col-span-2",
             )}
         >
             {featured ? (
                 <div className="grid items-center gap-6 p-4 sm:gap-8 sm:p-6 lg:grid-cols-[1.05fr_0.95fr] lg:p-8">
-                    <div className="overflow-hidden rounded-2xl"><div className="transition-transform duration-500 motion-safe:group-hover:scale-[1.04]"><ProjectMockup project={project} featured /></div></div>
+                    <div className="overflow-hidden rounded-sm"><div className="transition-transform duration-500 motion-safe:group-hover:scale-[1.04]"><ProjectMockup project={project} featured /></div></div>
                     <div className="flex min-w-0 flex-col py-2 sm:py-4">
                         <ProjectDetails
                             project={project}
@@ -166,7 +166,7 @@ function ProjectCard({ project, index }) {
             ) : (
                 <>
                     <div className="p-3 pb-0 sm:p-4 sm:pb-0">
-                        <div className="overflow-hidden rounded-2xl"><div className="transition-transform duration-500 motion-safe:group-hover:scale-[1.04]"><ProjectMockup project={project} /></div></div>
+                        <div className="overflow-hidden rounded-sm"><div className="transition-transform duration-500 motion-safe:group-hover:scale-[1.04]"><ProjectMockup project={project} /></div></div>
                     </div>
                     <div className="flex flex-1 flex-col p-5 sm:p-6">
                         <ProjectDetails project={project} index={index} />
@@ -210,7 +210,7 @@ function ProjectDetails({ project, index, featured = false }) {
                 {project.description}
             </p>
 
-            <dl className="mt-5 grid gap-4 rounded-2xl border border-border/60 bg-background/35 p-4 sm:grid-cols-3">
+            <dl className="mt-5 grid gap-4 rounded-sm border border-border/60 bg-background/35 p-4 sm:grid-cols-3">
                 {[
                     ["Problem", project.problem],
                     ["Approach", project.approach],

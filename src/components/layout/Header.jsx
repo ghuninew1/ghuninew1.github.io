@@ -212,7 +212,7 @@ const Header = () => {
                 )}
             >
                 <div className="mx-auto max-w-7xl px-4 sm:px-8">
-                    <div className="rounded-2xl apple-glass-subtle p-2 space-y-1">
+                    <div className="rounded-sm apple-glass-subtle p-2 space-y-1">
                         {navigation.map(({ label, href, icon: Icon }) => {
                             const isActive = activeSection === href.slice(1);
                             return (

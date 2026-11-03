@@ -1,5 +1,6 @@
 import { useSyncExternalStore } from "react";
 import { motion, useReducedMotion } from "motion/react";
+import MotionReveal from "../motion/MotionReveal";
 import { ArrowUpRight, Code2, MonitorCog, Network, Quote } from "lucide-react";
 import { personalInfo } from "../../data/portfolioData";
 import { cx } from "../../utils/cx";
@@ -47,8 +48,8 @@ export default function About() {
     const reveal = (direction) => ({
         initial: reduced ? false : desktop ? { opacity: 0, x: direction * 24 } : { opacity: 0, y: 20 },
         whileInView: { opacity: 1, x: 0, y: 0 },
-        viewport: { once: true, amount: 0.15 },
-        transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] },
+        viewport: { once: true, amount: 0.2 },
+        transition: { duration: 0.55, delay: reduced ? 0 : direction > 0 ? 0.08 : 0, ease: [0.22, 1, 0.36, 1] },
     });
     return (
         <section id="about" className="scroll-mt-24 px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
@@ -71,12 +72,12 @@ export default function About() {
                         </div>
                     </motion.div>
 
-                    <motion.div {...reveal(1)} whileHover={reduced ? undefined : { y: -3 }} className="rounded-3xl apple-glass p-6 sm:p-8">
+                    <motion.div {...reveal(1)} whileHover={reduced ? undefined : { y: -3, scale: 1.005 }} className="rounded-sm apple-glass p-6 sm:p-8">
                         <p className="text-base leading-8 text-muted-foreground sm:text-lg">{personalInfo.aboutText}</p>
                     </motion.div>
                 </div>
 
-                <div className="mb-6 mt-14 flex flex-wrap items-end justify-between gap-4 sm:mt-16">
+                <MotionReveal className="mb-6 mt-14 flex flex-wrap items-end justify-between gap-4 sm:mt-16">
                     <div>
                     <p className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-700 dark:text-emerald-400">What I Do</p>
                         <h3 className="mt-2 text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
@@ -87,16 +88,17 @@ export default function About() {
                     <p className="max-w-sm text-sm leading-6 text-muted-foreground">
                         ผสานทักษะด้านเทคนิคเข้ากับการแก้ปัญหาในการทำงานจริง
                     </p>
-                </div>
+                </MotionReveal>
 
+                <MotionReveal>
                 <div className="grid gap-4 md:grid-cols-3">
                     {strengths.map(({ icon: Icon, number, title, description, tags }) => (
                         <article
                             key={title}
-                            className="group flex h-full min-w-0 flex-col rounded-3xl apple-glass apple-glass-interactive p-6 sm:p-7"
+                            className="group flex h-full min-w-0 flex-col rounded-sm apple-glass apple-glass-interactive p-6 sm:p-7"
                         >
                             <div className="flex items-center justify-between">
-                                <div className="flex size-12 items-center justify-center rounded-2xl apple-glass-subtle text-emerald-700 transition-transform duration-300 group-hover:scale-105 dark:text-emerald-400">
+                                <div className="flex size-12 items-center justify-center rounded-sm apple-glass-subtle text-emerald-700 transition-transform duration-300 motion-safe:group-hover:scale-105 dark:text-emerald-400">
                                     <Icon className="size-5" />
                                 </div>
 
@@ -123,14 +125,16 @@ export default function About() {
                     ))}
                 </div>
 
-                <div className="relative mt-6 overflow-hidden rounded-3xl apple-glass p-6 sm:p-9">
+                </MotionReveal>
+                <MotionReveal>
+                <div className="relative mt-6 overflow-hidden rounded-sm apple-glass p-6 sm:p-9">
                     <div
                         aria-hidden="true"
                         className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(99,102,241,0.1),transparent_55%)]"
                     />
 
                     <div className="relative flex flex-col gap-5 sm:flex-row sm:items-start sm:gap-6">
-                        <div className="flex size-11 shrink-0 items-center justify-center rounded-2xl apple-glass-subtle text-emerald-700 dark:text-emerald-400">
+                        <div className="flex size-11 shrink-0 items-center justify-center rounded-sm apple-glass-subtle text-emerald-700 dark:text-emerald-400">
                             <Quote className="size-5" />
                         </div>
 
@@ -148,6 +152,7 @@ export default function About() {
                     </div>
                 </div>
 
+                </MotionReveal>
                 <a
                     href="#contact"
                     className={cx(
