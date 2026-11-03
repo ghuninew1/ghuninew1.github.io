@@ -1,0 +1,143 @@
+/* Apple Liquid Glass System */
+.apple-glass {
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(24px) saturate(190%);
+    -webkit-backdrop-filter: blur(24px) saturate(190%);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 
+        0 10px 30px -10px rgba(0, 0, 0, 0.07),
+        0 20px 40px -15px rgba(0, 0, 0, 0.04),
+        inset 0 1px 1px 0 rgba(255, 255, 255, 0.8),
+        inset 0 -1px 1px 0 rgba(0, 0, 0, 0.03);
+}
+
+.dark .apple-glass {
+    background: rgba(23, 26, 23, 0.72);
+    backdrop-filter: blur(24px) saturate(190%);
+    -webkit-backdrop-filter: blur(24px) saturate(190%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 
+        0 20px 50px -10px rgba(0, 0, 0, 0.5),
+        inset 0 1px 1px 0 rgba(255, 255, 255, 0.2),
+        inset 0 -1px 1px 0 rgba(0, 0, 0, 0.4);
+}
+
+.apple-glass-subtle {
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    box-shadow: 
+        0 8px 24px -8px rgba(0, 0, 0, 0.05),
+        inset 0 1px 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.dark .apple-glass-subtle {
+    background: rgba(255, 255, 255, 0.045);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 
+        0 8px 24px -8px rgba(0, 0, 0, 0.3),
+        inset 0 1px 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.glass-button {
+    cursor: pointer;
+    border: 1px solid rgba(30, 38, 30, 0.1);
+    background: rgba(255, 255, 255, 0.58);
+    color: inherit;
+    -webkit-backdrop-filter: blur(18px) saturate(160%);
+    backdrop-filter: blur(18px) saturate(160%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.78), 0 8px 24px -16px rgba(0, 0, 0, 0.3);
+}
+
+.dark .glass-button {
+    border-color: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.055);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.11), 0 8px 24px -16px rgba(0, 0, 0, 0.8);
+}
+
+.glass-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.58;
+}
+
+.apple-glass-interactive {
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.apple-glass-interactive:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.65);
+    border-color: rgba(255, 255, 255, 0.6);
+    box-shadow: 
+        0 14px 34px -8px rgba(0, 0, 0, 0.1),
+        inset 0 1px 2px 0 rgba(255, 255, 255, 0.9);
+}
+
+.dark .apple-glass-interactive:hover {
+    background: rgba(30, 36, 54, 0.55);
+    border-color: rgba(255, 255, 255, 0.22);
+    box-shadow: 
+        0 24px 50px -10px rgba(0, 0, 0, 0.6),
+        inset 0 1px 2px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* Keep the shared button's glass reflections visible on light and dark controls. */
+.glass-button::before {
+    background: linear-gradient(
+        135deg,
+        color-mix(in oklch, currentColor 28%, transparent) 0%,
+        transparent 40%,
+        color-mix(in oklch, currentColor 12%, transparent) 100%
+    );
+}
+
+.glass-button::after {
+    background: radial-gradient(
+        90px circle at var(--mx) var(--my),
+        color-mix(in oklch, currentColor 40%, transparent),
+        color-mix(in oklch, currentColor 14%, transparent) 45%,
+        transparent 75%
+    );
+}
+
+.glass-button:where(:hover, :focus-visible):not(:disabled, [aria-disabled="true"]) {
+    box-shadow: inset 0 1px 0 color-mix(in oklch, currentColor 34%, transparent),
+        inset 0 -1px 0 color-mix(in oklch, currentColor 12%, transparent),
+        inset 0 0 0 1px color-mix(in oklch, currentColor 22%, transparent),
+        0 6px 20px -6px rgb(0 0 0 / 25%);
+}
+
+/* Match the dark-mode glass reflection on light-surface buttons. */
+:root:not(.dark) .glass-button:not(.bg-foreground)::before {
+    background: linear-gradient(135deg, rgb(255 255 255 / 0.4), transparent 40%, rgb(255 255 255 / 0.15));
+}
+:root:not(.dark) .glass-button:not(.bg-foreground)::after {
+    background: radial-gradient(90px circle at var(--mx) var(--my), rgb(255 255 255 / 0.28), rgb(255 255 255 / 0.08) 45%, transparent 75%);
+}
+:root:not(.dark) .glass-button:not(.bg-foreground):where(:hover, :focus-visible):not(:disabled, [aria-disabled="true"]) {
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.55), inset 0 -1px 0 rgb(255 255 255 / 0.1), inset 0 0 0 1px rgb(255 255 255 / 0.18), 0 6px 20px -6px rgb(0 0 0 / 0.25);
+}
+
+.glass-panel {
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 
+        0 20px 40px -15px rgba(0, 0, 0, 0.08),
+        inset 0 1px 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+.dark .glass-panel {
+    background: rgba(15, 23, 42, 0.55);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 
+        0 20px 40px -15px rgba(0, 0, 0, 0.5),
+        inset 0 1px 1px 0 rgba(255, 255, 255, 0.18);
+}
+
