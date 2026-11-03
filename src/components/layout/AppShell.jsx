@@ -66,26 +66,19 @@ const AppShell = ({ children }) => {
                 onMobileClose={() => setIsMobileNavOpen(false)}
             />
 
-            <main id="main-content" className="min-w-0 min-h-0 flex-1 overflow-hidden">
+            <main id="main-content" className="flex-1 min-w-0 min-h-0 overflow-hidden">
                 {children}
             </main>
 
-            <footer className={cx("border-t border-border/50", "px-5 py-6 sm:px-8 lg:px-12")}>
+            <footer className={cx("border-t border-border/50", "px-5 py-3 sm:px-8 lg:px-12")}>
                 <div
                     className={cx(
                         "mx-auto flex max-w-7xl flex-col gap-3 items-center",
-                        "text-xs text-muted-foreground",
-                        "md:flex-row md:items-center md:justify-between justify-center ",
+                        "text-xs text-muted-foreground animate-fadeInUp",
+                        "md:flex-row md:items-center md:justify-center justify-center ",
                     )}
                 >
                     <p>© {new Date().getFullYear()} GhuniNew. All rights reserved.</p>
-
-                    <p className="flex items-center gap-2">
-                        Built with React &amp; Tailwind CSS
-                        <span aria-hidden="true" className="text-emerald-500">
-                            ◆
-                        </span>
-                    </p>
                 </div>
             </footer>
         </div>
