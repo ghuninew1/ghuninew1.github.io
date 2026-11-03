@@ -1,6 +1,6 @@
 
 import { useEffect, useRef } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router";
 import { Loader } from "lucide-react";
 import AppShell from "./components/layout/AppShell";
 import Home from "./pages/Home";

@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { cx } from "../../utils/cx";
 import { navigation } from "../../data/portfolioData";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import { useActiveSection } from "../../hooks/useActiveSection";
 import GlassButton from "../GlassButton";
 

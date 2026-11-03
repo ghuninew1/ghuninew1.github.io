@@ -5,7 +5,7 @@ import { Menu, X } from "lucide-react";
 import { cx } from "../../utils/cx";
 import ThemeToggle from "../../theme/ThemeToggle";
 import { navigation } from "../../data/portfolioData";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import { useActiveSection } from "../../hooks/useActiveSection";
 import { Github } from "../../utils/github";
 import Logo from "../../assets/logo.avif";

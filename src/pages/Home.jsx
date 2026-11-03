@@ -17,7 +17,7 @@ import Timeline from "../components/sections/Timeline";
 import Contact from "../components/sections/Contact";
 import { personalInfo } from "../data/portfolioData";
 import { ArrowDown, ArrowUpRight } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import { Github } from "../utils/github";
 import GlassButton from "../components/GlassButton";
 

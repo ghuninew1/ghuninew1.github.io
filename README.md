@@ -20,7 +20,7 @@ Personal portfolio สำหรับแสดงผลงานและทั�
 
 ## เทคโนโลยี
 
-- React 19 และ React Router
+- React 19 และ React Router 8
 - Vite 8
 - Tailwind CSS v4
 - Motion, Three.js และ React Three Fiber
@@ -32,7 +32,7 @@ Personal portfolio สำหรับแสดงผลงานและทั�
 
 ### สิ่งที่ต้องมี
 
-- Node.js รุ่นที่รองรับ Vite 8
+- Node.js 22.22 ขึ้นไป และรุ่นที่รองรับ Vite 8
 - pnpm
 
 หากใช้ package manager อื่น ให้ใช้ตัวเดียวกันทั้งตอนติดตั้งและรันคำสั่ง
