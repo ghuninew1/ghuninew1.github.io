@@ -114,7 +114,9 @@ const Header = () => {
                         "rounded-xl p-1.5 focus-visible:outline-none",
                         "focus-visible:ring-2 focus-visible:ring-ring",
                         "transition-all duration-200",
-                        activeSection === "home" ? "text-emerald-600 dark:text-emerald-300" : "text-foreground/80 hover:text-emerald-600 dark:hover:text-emerald-400",
+                        activeSection === "home"
+                            ? "text-emerald-600 dark:text-emerald-300"
+                            : "text-foreground/80 hover:text-emerald-600 dark:hover:text-emerald-400",
                     )}
                 >
                     <span
@@ -124,16 +126,20 @@ const Header = () => {
                             // "transition-all duration-300 group-hover:scale-105 group-hover:border-violet-400/40",
                         )}
                     >
-                        <img src={Logo} alt="GhuniNew" className="w-full"/>
+                        <img src={Logo} alt="GhuniNew" className="w-full" />
                     </span>
 
-                    <span className="text-sm font-semibold tracking-tight items-center hidden md:flex">
-                        <img src={LogoFull} alt="GhuniNew"  height={20} className="w-full h-9 mr-2" />
+                    <span className="hidden md:flex items-center font-semibold text-sm tracking-tight">
+                        <img src={LogoFull} alt="GhuniNew" height={20} className="mr-2 w-full h-9" />
                     </span>
                 </Link>
 
                 {/* Desktop Navigation Pill */}
-                <nav aria-label="Main navigation" {...highlightEvents} className="relative hidden items-center gap-1 rounded-full px-3 py-1.5 apple-glass-subtle lg:flex">
+                <nav
+                    aria-label="Main navigation"
+                    {...highlightEvents}
+                    className="hidden relative lg:flex items-center gap-1 px-3 py-1.5 rounded-full apple-glass-subtle"
+                >
                     <NavHighlight highlight={highlight} />
                     {navigation.map(({ label, href }) => {
                         const isActive = activeSection === href.slice(1);
@@ -160,7 +166,7 @@ const Header = () => {
                 </nav>
 
                 {/* Right Actions & Mobile Hamburger */}
-                <div className="flex shrink-0 items-center gap-2 sm:gap-2.5">
+                <div className="flex items-center gap-2 sm:gap-2.5 shrink-0">
                     <ThemeToggle />
 
                     <Link
@@ -208,11 +214,13 @@ const Header = () => {
             <div
                 className={cx(
                     "overflow-hidden transition-all duration-300 ease-out lg:hidden",
-                    isMobileMenuOpen ? "max-h-96 opacity-100 py-3 border-t border-white/10" : "max-h-0 opacity-0 py-0 border-t-0 pointer-events-none",
+                    isMobileMenuOpen
+                        ? "max-h-96 opacity-100 py-3 border-t border-white/10"
+                        : "max-h-0 opacity-0 py-0 border-t-0 pointer-events-none",
                 )}
             >
-                <div className="mx-auto max-w-7xl px-4 sm:px-8">
-                    <div className="rounded-sm apple-glass-subtle p-2 space-y-1">
+                <div className="mx-auto px-4 sm:px-8 max-w-7xl">
+                    <div className="space-y-1 p-2 rounded-xl apple-glass-subtle">
                         {navigation.map(({ label, href, icon: Icon }) => {
                             const isActive = activeSection === href.slice(1);
                             return (

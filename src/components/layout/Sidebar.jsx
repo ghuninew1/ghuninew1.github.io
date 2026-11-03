@@ -48,7 +48,7 @@ const Sidebar = ({ isMobileOpen, onMobileOpen, onMobileClose }) => {
                     aria-label="Portfolio sections"
                     {...highlightEvents}
                     className={cx(
-                        "relative flex flex-col items-center gap-2 rounded-sm p-2",
+                        "relative flex flex-col items-center gap-2 rounded-2xl p-2",
                         "apple-glass border shadow-2xl",
                     )}
                 >
@@ -106,7 +106,7 @@ const Sidebar = ({ isMobileOpen, onMobileOpen, onMobileClose }) => {
                     aria-expanded={isMobileOpen}
                     aria-controls="mobile-section-navigation"
                     className={cx(
-                        "flex size-12 items-center justify-center rounded-sm",
+                        "flex size-12 items-center justify-center rounded-xl",
                         "apple-glass text-foreground",
                         "shadow-xl transition-all duration-200",
                         "hover:scale-105 active:scale-95",
@@ -144,7 +144,7 @@ const Sidebar = ({ isMobileOpen, onMobileOpen, onMobileClose }) => {
                     aria-label="Portfolio sections"
                     className={cx(
                         "absolute bottom-20 left-4 w-64 max-w-[calc(100vw-2rem)]",
-                        "rounded-sm apple-glass p-3 shadow-2xl",
+                        "rounded-xl apple-glass p-3 shadow-2xl",
                         "transition-all duration-200 ease-out",
                         isMobileOpen ? "translate-y-0 scale-100 opacity-100" : "translate-y-2 scale-95 opacity-0",
                     )}

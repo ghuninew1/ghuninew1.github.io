@@ -39,8 +39,12 @@ function subscribeDesktop(callback) {
     query.addEventListener("change", callback);
     return () => query.removeEventListener("change", callback);
 }
-function getDesktop() { return window.matchMedia(desktopQuery).matches; }
-function getServerDesktop() { return false; }
+function getDesktop() {
+    return window.matchMedia(desktopQuery).matches;
+}
+function getServerDesktop() {
+    return false;
+}
 
 export default function About() {
     const desktop = useSyncExternalStore(subscribeDesktop, getDesktop, getServerDesktop);
@@ -52,106 +56,110 @@ export default function About() {
         transition: { duration: 0.55, delay: reduced ? 0 : direction > 0 ? 0.08 : 0, ease: [0.22, 1, 0.36, 1] },
     });
     return (
-        <section id="about" className="scroll-mt-24 px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
+        <section id="about" className="px-5 sm:px-8 lg:px-12 py-20 lg:py-28 scroll-mt-24">
             <div className="mx-auto max-w-7xl">
-                <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-end lg:gap-16">
+                <div className="lg:items-end gap-8 lg:gap-16 grid lg:grid-cols-[0.8fr_1.2fr]">
                     <motion.div {...reveal(-1)}>
-                        <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-emerald-700 dark:text-emerald-400">
+                        <p className="mb-3 font-semibold text-emerald-700 dark:text-emerald-400 text-sm uppercase tracking-[0.2em]">
                             About Me
                         </p>
 
-                        <h2 className="max-w-lg text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
+                        <h2 className="max-w-lg font-semibold text-foreground text-3xl sm:text-4xl lg:text-5xl tracking-tight">
                             Technology with a purpose.
                         </h2>
 
-                        <div className="mt-6 flex items-center gap-3">
-                            <span className="h-px w-10 bg-emerald-500" />
-                            <span className="text-sm font-medium text-muted-foreground">
+                        <div className="flex items-center gap-3 mt-6">
+                            <span className="bg-emerald-500 w-10 h-px" />
+                            <span className="font-medium text-muted-foreground text-sm">
                                 IT · Infrastructure · Development
                             </span>
                         </div>
                     </motion.div>
 
-                    <motion.div {...reveal(1)} whileHover={reduced ? undefined : { y: -3, scale: 1.005 }} className="rounded-sm apple-glass p-6 sm:p-8">
-                        <p className="text-base leading-8 text-muted-foreground sm:text-lg">{personalInfo.aboutText}</p>
+                    <motion.div
+                        {...reveal(1)}
+                        whileHover={reduced ? undefined : { y: -3, scale: 1.005 }}
+                        className="p-6 sm:p-8 rounded-xl apple-glass"
+                    >
+                        <p className="text-muted-foreground text-base sm:text-lg leading-8">{personalInfo.aboutText}</p>
                     </motion.div>
                 </div>
 
-                <MotionReveal className="mb-6 mt-14 flex flex-wrap items-end justify-between gap-4 sm:mt-16">
+                <MotionReveal className="flex flex-wrap justify-between items-end gap-4 mt-14 sm:mt-16 mb-6">
                     <div>
-                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-700 dark:text-emerald-400">What I Do</p>
-                        <h3 className="mt-2 text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+                        <p className="font-semibold text-emerald-700 dark:text-emerald-400 text-xs uppercase tracking-[0.18em]">
+                            What I Do
+                        </p>
+                        <h3 className="mt-2 font-semibold text-foreground text-2xl sm:text-3xl tracking-tight">
                             Areas of expertise
                         </h3>
                     </div>
 
-                    <p className="max-w-sm text-sm leading-6 text-muted-foreground">
+                    <p className="max-w-sm text-muted-foreground text-sm leading-6">
                         ผสานทักษะด้านเทคนิคเข้ากับการแก้ปัญหาในการทำงานจริง
                     </p>
                 </MotionReveal>
 
                 <MotionReveal>
-                <div className="grid gap-4 md:grid-cols-3">
-                    {strengths.map(({ icon: Icon, number, title, description, tags }) => (
-                        <article
-                            key={title}
-                            className="group flex h-full min-w-0 flex-col rounded-sm apple-glass apple-glass-interactive p-6 sm:p-7"
-                        >
-                            <div className="flex items-center justify-between">
-                                <div className="flex size-12 items-center justify-center rounded-sm apple-glass-subtle text-emerald-700 transition-transform duration-300 motion-safe:group-hover:scale-105 dark:text-emerald-400">
-                                    <Icon className="size-5" />
+                    <div className="gap-4 grid md:grid-cols-3">
+                        {strengths.map(({ icon: Icon, number, title, description, tags }) => (
+                            <article
+                                key={title}
+                                className="group flex flex-col p-6 sm:p-7 rounded-xl min-w-0 h-full apple-glass apple-glass-interactive"
+                            >
+                                <div className="flex justify-between items-center">
+                                    <div className="flex justify-center items-center rounded-xl size-12 text-emerald-700 dark:text-emerald-400 motion-safe:group-hover:scale-105 transition-transform duration-300 apple-glass-subtle">
+                                        <Icon className="size-5" />
+                                    </div>
+
+                                    <span className="font-medium tabular-nums text-muted-foreground/50 text-sm">
+                                        {number}
+                                    </span>
                                 </div>
 
-                                <span className="text-sm font-medium tabular-nums text-muted-foreground/50">
-                                    {number}
-                                </span>
-                            </div>
+                                <h4 className="mt-6 font-semibold text-foreground text-lg tracking-tight">{title}</h4>
 
-                            <h4 className="mt-6 text-lg font-semibold tracking-tight text-foreground">{title}</h4>
+                                <p className="flex-1 mt-3 text-muted-foreground text-sm leading-7">{description}</p>
 
-                            <p className="mt-3 flex-1 text-sm leading-7 text-muted-foreground">{description}</p>
-
-                            <div className="mt-6 flex flex-wrap gap-2">
-                                {tags.map((tag) => (
-                                    <span
-                                        key={tag}
-                                        className="rounded-full border border-border/60 bg-background/40 px-2.5 py-1 text-[11px] font-medium text-muted-foreground"
-                                    >
-                                        {tag}
-                                    </span>
-                                ))}
-                            </div>
-                        </article>
-                    ))}
-                </div>
-
+                                <div className="flex flex-wrap gap-2 mt-6">
+                                    {tags.map((tag) => (
+                                        <span
+                                            key={tag}
+                                            className="bg-background/40 px-2.5 py-1 border border-border/60 rounded-full font-medium text-[11px] text-muted-foreground"
+                                        >
+                                            {tag}
+                                        </span>
+                                    ))}
+                                </div>
+                            </article>
+                        ))}
+                    </div>
                 </MotionReveal>
                 <MotionReveal>
-                <div className="relative mt-6 overflow-hidden rounded-sm apple-glass p-6 sm:p-9">
-                    <div
-                        aria-hidden="true"
-                        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(99,102,241,0.1),transparent_55%)]"
-                    />
+                    <div className="relative mt-6 p-6 sm:p-9 rounded-xl overflow-hidden apple-glass">
+                        <div
+                            aria-hidden="true"
+                            className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(99,102,241,0.1),transparent_55%)] pointer-events-none"
+                        />
 
-                    <div className="relative flex flex-col gap-5 sm:flex-row sm:items-start sm:gap-6">
-                        <div className="flex size-11 shrink-0 items-center justify-center rounded-sm apple-glass-subtle text-emerald-700 dark:text-emerald-400">
-                            <Quote className="size-5" />
-                        </div>
+                        <div className="relative flex sm:flex-row flex-col sm:items-start gap-5 sm:gap-6">
+                            <div className="flex justify-center items-center rounded-xl size-11 text-emerald-700 dark:text-emerald-400 shrink-0 apple-glass-subtle">
+                                <Quote className="size-5" />
+                            </div>
 
-                        <div className="min-w-0 flex-1">
-                            <p className="text-lg font-medium leading-8 tracking-tight text-foreground sm:text-xl sm:leading-9">
-                                “{personalInfo.quote}”
-                            </p>
+                            <div className="flex-1 min-w-0">
+                                <p className="font-medium text-foreground text-lg sm:text-xl leading-8 sm:leading-9 tracking-tight">
+                                    “{personalInfo.quote}”
+                                </p>
 
-                            <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-muted-foreground">
-                                <span>{personalInfo.location}</span>
-                                <span aria-hidden="true" className="size-1 rounded-full bg-emerald-500" />
-                                <span>{personalInfo.interests.join(" / ")}</span>
+                                <div className="flex flex-wrap items-center gap-x-3 gap-y-2 mt-5 text-muted-foreground text-sm">
+                                    <span>{personalInfo.location}</span>
+                                    <span aria-hidden="true" className="bg-emerald-500 rounded-full size-1" />
+                                    <span>{personalInfo.interests.join(" / ")}</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-
                 </MotionReveal>
                 <a
                     href="#contact"

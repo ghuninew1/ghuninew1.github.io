@@ -60,7 +60,7 @@ export default function Contact() {
     return (
         <section id="contact" className="px-5 sm:px-8 lg:px-12 py-20 lg:py-28 scroll-mt-24">
             <div className="mx-auto max-w-7xl">
-                <div className="relative shadow-2xl p-6 sm:p-10 lg:p-14 rounded-sm overflow-hidden apple-glass">
+                <div className="relative shadow-2xl p-6 sm:p-10 lg:p-14 rounded-xl overflow-hidden apple-glass">
                     <div
                         aria-hidden="true"
                         className="-top-24 -right-20 absolute bg-emerald-500/12 blur-[100px] rounded-full size-80 pointer-events-none"
@@ -154,7 +154,7 @@ export default function Contact() {
 
                         <form
                             onSubmit={handleSubmit}
-                            className="bg-background/35 backdrop-blur-xl p-5 sm:p-7 border border-border/50 rounded-sm"
+                            className="bg-background/35 backdrop-blur-xl p-5 sm:p-7 border border-border/50 rounded-xl"
                         >
                             <div className="mb-6">
                                 <h3 className="font-semibold text-foreground text-xl">Send me a message</h3>
