@@ -15,10 +15,16 @@ export default function HeroObject({ reduced }) {
             pointer.current.x = (event.clientX / window.innerWidth - 0.5) * 2;
             pointer.current.y = (event.clientY / window.innerHeight - 0.5) * 2;
         };
-        const reset = () => { pointer.current.x = 0; pointer.current.y = 0; };
+        const reset = () => {
+            pointer.current.x = 0;
+            pointer.current.y = 0;
+        };
         window.addEventListener("pointermove", move, { passive: true });
         window.addEventListener("pointerleave", reset);
-        return () => { window.removeEventListener("pointermove", move); window.removeEventListener("pointerleave", reset); };
+        return () => {
+            window.removeEventListener("pointermove", move);
+            window.removeEventListener("pointerleave", reset);
+        };
     }, [reduced]);
 
     useFrame((state, delta) => {
@@ -38,16 +44,16 @@ export default function HeroObject({ reduced }) {
     return (
         <>
             <mesh ref={primary} position={[viewport.width * 0.37, viewport.height * 0.35, 0]} rotation={[0.2, 0.4, 0]}>
-                <icosahedronGeometry args={[size * 0.16, 1]} />
-                <meshPhysicalMaterial color="#79cbb6" metalness={0.35} roughness={0.3} transparent opacity={0.58} />
+                <icosahedronGeometry args={[size * 0.16, 4]} />
+                <meshPhysicalMaterial color="#8B0000" metalness={0.35} roughness={0.3} transparent opacity={0.58} />
             </mesh>
             <mesh ref={accent} position={[-viewport.width * 0.39, -viewport.height * 0.2, 0]} rotation={[0.3, 0.5, 0]}>
-                <octahedronGeometry args={[size * 0.12, 0]} />
-                <meshBasicMaterial color="#84bdb9" wireframe transparent opacity={0.48} />
+                <octahedronGeometry args={[size * 0.12, 1]} />
+                <meshBasicMaterial color="#8B0000" wireframe transparent opacity={0.48} />
             </mesh>
             <mesh ref={ring} position={[viewport.width * 0.39, -viewport.height * 0.38, 0]} rotation={[0.8, 0.3, 0]}>
                 <torusGeometry args={[size * 0.075, size * 0.009, 6, 28]} />
-                <meshStandardMaterial color="#77b9bb" metalness={0.4} roughness={0.35} transparent opacity={0.65} />
+                <meshStandardMaterial color="#8B0000" metalness={0.4} roughness={0.35} transparent opacity={0.65} />
             </mesh>
         </>
     );
