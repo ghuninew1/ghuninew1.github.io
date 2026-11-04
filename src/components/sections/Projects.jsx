@@ -298,7 +298,7 @@ export default function Projects() {
                 <motion.div
                     initial="hidden"
                     whileInView="visible"
-                    viewport={{ once: true, amount: 0.1 }}
+                    viewport={{ amount: 0.1 }}
                     variants={{ visible: { transition: { delayChildren: 0.12, staggerChildren: 0.06 } } }}
                     className="gap-5 sm:gap-6 grid lg:grid-cols-2"
                 >

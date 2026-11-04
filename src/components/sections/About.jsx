@@ -52,7 +52,7 @@ export default function About() {
     const reveal = (direction) => ({
         initial: reduced ? false : desktop ? { opacity: 0, x: direction * 24 } : { opacity: 0, y: 20 },
         whileInView: { opacity: 1, x: 0, y: 0 },
-        viewport: { once: true, amount: 0.2 },
+        viewport: { amount: 0.2 },
         transition: { duration: 0.55, delay: reduced ? 0 : direction > 0 ? 0.08 : 0, ease: [0.22, 1, 0.36, 1] },
     });
     return (

@@ -11,7 +11,7 @@ function TimelineItem({ item, index }) {
         <motion.article
             initial={reduced ? false : "hidden"}
             whileInView="visible"
-            viewport={{ once: true, amount: "some", margin: "0px 0px -20% 0px" }}
+            viewport={{ amount: "some", margin: "0px 0px -20% 0px" }}
             className="group relative flex gap-4 sm:gap-7"
         >
             <div className="z-10 relative flex flex-col items-center shrink-0">
@@ -85,7 +85,7 @@ function TimelineHeading({ children }) {
         <motion.div
             initial={reduced ? false : { opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ amount: 0.2 }}
             transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
             className="mb-12 sm:mb-14 max-w-2xl"
         >

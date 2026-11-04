@@ -51,7 +51,8 @@ export default function Home() {
     };
     const entrance = (delay, y = 20) => ({
         initial: reduced ? false : { opacity: 0, y },
-        animate: { opacity: 1, y: 0 },
+        whileInView: { opacity: 1, y: 0 },
+        viewport: { amount: 0.15 },
         transition: { duration: 0.5, delay: reduced ? 0 : delay, ease: [0.22, 1, 0.36, 1] },
     });
     return (
@@ -117,24 +118,6 @@ export default function Home() {
                             >
                                 GhuniNew
                             </FuzzyText>
-                            {/* <motion.span
-                                className="text-emerald-500"
-                                initial={false}
-                                animate={
-                                    reduced
-                                        ? undefined
-                                        : {
-                                              textShadow: [
-                                                  "0 0 0px rgba(16,185,129,0)",
-                                                  "0 0 16px rgba(16,185,129,0.45)",
-                                                  "0 0 0px rgba(16,185,129,0)",
-                                              ],
-                                          }
-                                }
-                                transition={{ duration: 1.4, delay: 0.2 }}
-                            >
-                                .
-                            </motion.span> */}
                         </motion.h1>
                         <motion.p
                             {...entrance(0.22)}
@@ -230,7 +213,7 @@ export default function Home() {
                                         tiltX.set(0);
                                         tiltY.set(0);
                                     }}
-                                    className="relative rounded-[2rem]"
+                                    className="relative rounded-[2rem] animate-fadeInRight"
                                 >
                                     <div
                                         aria-hidden="true"

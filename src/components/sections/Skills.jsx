@@ -74,7 +74,7 @@ export default function Skills() {
                 <motion.div
                     initial={reduced ? false : { opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.2 }}
+                    viewport={{ amount: 0.2 }}
                     transition={{ duration: 0.55 }}
                     className="lg:items-end gap-6 grid lg:grid-cols-[1fr_0.7fr]"
                 >
@@ -96,7 +96,7 @@ export default function Skills() {
                 <motion.div
                     initial="hidden"
                     whileInView="visible"
-                    viewport={{ once: true, amount: 0.1 }}
+                    viewport={{ amount: 0.1 }}
                     variants={{ visible: { transition: { delayChildren: 0.12, staggerChildren: 0.06 } } }}
                     className="gap-5 grid lg:grid-cols-2 mt-10 sm:mt-12"
                 >

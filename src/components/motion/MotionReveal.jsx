@@ -7,7 +7,7 @@ export default function MotionReveal({ children, className, distance = 24, direc
             className={className}
             initial={reduced ? false : { opacity: 0, [direction]: distance }}
             whileInView={{ opacity: 1, [direction]: 0 }}
-            viewport={{ once: true, amount: 0.15 }}
+            viewport={{ amount: 0.15 }}
             transition={{ duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] }}
         >
             {children}

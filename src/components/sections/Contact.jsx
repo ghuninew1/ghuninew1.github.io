@@ -70,7 +70,7 @@ export default function Contact() {
                         <motion.div
                             initial="hidden"
                             whileInView="visible"
-                            viewport={{ once: true, amount: 0.2 }}
+                            viewport={{ amount: 0.2 }}
                             variants={{ visible: { transition: { staggerChildren: 0.06 } } }}
                             className="flex flex-col"
                         >
