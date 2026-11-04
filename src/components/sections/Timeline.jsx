@@ -11,9 +11,7 @@ function TimelineItem({ item, index }) {
         <motion.article
             initial={reduced ? false : "hidden"}
             whileInView="visible"
-            viewport={{ once: true, amount: 0.15 }}
-            variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-            transition={{ duration: 0.55 }}
+            viewport={{ once: true, amount: "some", margin: "0px 0px -20% 0px" }}
             className="group relative flex gap-4 sm:gap-7"
         >
             <div className="z-10 relative flex flex-col items-center shrink-0">
@@ -37,7 +35,9 @@ function TimelineItem({ item, index }) {
             </div>
 
             <div className="flex-1 pb-8 sm:pb-10 min-w-0">
-                <div
+                <motion.div
+                    variants={reduced ? undefined : { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+                    transition={{ duration: 0.55, delay: 0.12 }}
                     className={cx(
                         "relative overflow-hidden rounded-xl apple-glass apple-glass-interactive p-5 sm:p-7",
                         "transition-all duration-300 ease-out",
@@ -73,7 +73,7 @@ function TimelineItem({ item, index }) {
 
                         <p className="text-muted-foreground text-sm leading-7">{item.description}</p>
                     </div>
-                </div>
+                </motion.div>
             </div>
         </motion.article>
     );
