@@ -1,14 +1,15 @@
 import { motion, useReducedMotion } from "motion/react";
+import { revealDistance, revealTransition } from "./revealMotion";
 
-export default function MotionReveal({ children, className, distance = 24, direction = "y", delay = 0 }) {
+export default function MotionReveal({ children, className }) {
     const reduced = useReducedMotion();
     return (
         <motion.div
             className={className}
-            initial={reduced ? false : { opacity: 0, [direction]: distance }}
-            whileInView={{ opacity: 1, [direction]: 0 }}
+            initial={reduced ? false : { opacity: 0, y: revealDistance }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ amount: 0.15 }}
-            transition={{ duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] }}
+            transition={revealTransition}
         >
             {children}
         </motion.div>

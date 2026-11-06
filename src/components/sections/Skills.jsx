@@ -1,3 +1,4 @@
+import { revealDistance, revealTransition } from "../motion/revealMotion";
 import { motion, useReducedMotion } from "motion/react";
 import {
     Layers3,
@@ -72,10 +73,10 @@ export default function Skills() {
         <section id="skills" className="px-5 sm:px-8 lg:px-12 py-20 lg:py-28 scroll-mt-24">
             <div className="mx-auto max-w-7xl">
                 <motion.div
-                    initial={reduced ? false : { opacity: 0, y: 20 }}
+                    initial={reduced ? false : { opacity: 0, y: revealDistance }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ amount: 0.2 }}
-                    transition={{ duration: 0.55 }}
+                    transition={revealTransition}
                     className="lg:items-end gap-6 grid lg:grid-cols-[1fr_0.7fr]"
                 >
                     <div className="max-w-2xl">
@@ -94,7 +95,7 @@ export default function Skills() {
                 </motion.div>
 
                 <motion.div
-                    initial="hidden"
+                    initial={reduced ? false : "hidden"}
                     whileInView="visible"
                     viewport={{ amount: 0.1 }}
                     variants={{ visible: { transition: { delayChildren: 0.12, staggerChildren: 0.06 } } }}
@@ -103,9 +104,8 @@ export default function Skills() {
                     {categoryEntries.map(([category, skills], index) => (
                         <motion.article
                             key={category}
-                            variants={{ hidden: { opacity: 0, y: reduced ? 0 : 24 }, visible: { opacity: 1, y: 0 } }}
+                            variants={{ hidden: { opacity: 0, y: revealDistance }, visible: { opacity: 1, y: 0, transition: revealTransition } }}
                             whileHover={reduced ? undefined : { y: -5, scale: 1.01 }}
-                            transition={{ duration: 0.55 }}
                             className={cx(
                                 "group flex min-w-0 flex-col rounded-xl apple-glass apple-glass-interactive p-5 sm:p-7",
                                 index === 0 && categoryEntries.length % 2 !== 0 ? "lg:col-span-2" : "",

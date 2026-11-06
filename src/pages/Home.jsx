@@ -1,5 +1,6 @@
 import { lazy, Suspense, Component } from "react";
 import { motion, useMotionValue, useReducedMotion, useSpring, useTransform } from "motion/react";
+import { revealDistance, revealTransition } from "../components/motion/revealMotion";
 import MotionReveal from "../components/motion/MotionReveal";
 
 const HeroScene = lazy(() => import("../components/three/HeroScene"));
@@ -49,11 +50,11 @@ export default function Home() {
         tiltX.set(0);
         tiltY.set(0);
     };
-    const entrance = (delay, y = 20) => ({
-        initial: reduced ? false : { opacity: 0, y },
+    const entrance = (delay) => ({
+        initial: reduced ? false : { opacity: 0, y: revealDistance },
         whileInView: { opacity: 1, y: 0 },
         viewport: { amount: 0.15 },
-        transition: { duration: 0.5, delay: reduced ? 0 : delay, ease: [0.22, 1, 0.36, 1] },
+        transition: { ...revealTransition, delay },
     });
     return (
         <main className="w-full overflow-hidden">
@@ -94,7 +95,7 @@ export default function Home() {
                             Hello, I&apos;m
                         </motion.p>
                         <motion.h1
-                            {...entrance(0.14, 24)}
+                            {...entrance(0.14)}
                             className="flex justify-center items-center font-semibold text-foreground text-5xl sm:text-6xl lg:text-7xl xl:text-8xl"
                         >
                             <FuzzyText
@@ -255,7 +256,7 @@ export default function Home() {
 
             <Timeline />
 
-            <MotionReveal distance={16}>
+            <MotionReveal>
                 <Contact />
             </MotionReveal>
         </main>

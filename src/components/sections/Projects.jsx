@@ -1,3 +1,4 @@
+import { revealDistance, revealTransition } from "../motion/revealMotion";
 import MotionReveal from "../motion/MotionReveal";
 import { motion, useReducedMotion } from "motion/react";
 
@@ -138,9 +139,8 @@ function ProjectCard({ project, index }) {
 
     return (
         <motion.article
-            variants={{ hidden: { opacity: 0, y: reduced ? 0 : 24 }, visible: { opacity: 1, y: 0 } }}
+            variants={{ hidden: { opacity: 0, y: revealDistance }, visible: { opacity: 1, y: 0, transition: revealTransition } }}
             whileHover={reduced ? undefined : { y: -5, scale: 1.01 }}
-            transition={{ duration: 0.55 }}
             className={cx(
                 "group flex min-w-0 flex-col overflow-hidden rounded-xl apple-glass apple-glass-interactive",
                 featured && "lg:col-span-2",
@@ -280,6 +280,7 @@ function ProjectDetails({ project, index, featured = false }) {
 }
 
 export default function Projects() {
+    const reduced = useReducedMotion();
     return (
         <section id="projects" className="px-5 sm:px-8 lg:px-12 py-20 lg:py-28 scroll-mt-24">
             <div className="mx-auto max-w-7xl">
@@ -296,7 +297,7 @@ export default function Projects() {
                 </MotionReveal>
 
                 <motion.div
-                    initial="hidden"
+                    initial={reduced ? false : "hidden"}
                     whileInView="visible"
                     viewport={{ amount: 0.1 }}
                     variants={{ visible: { transition: { delayChildren: 0.12, staggerChildren: 0.06 } } }}

@@ -1,4 +1,4 @@
-import { useSyncExternalStore } from "react";
+import { revealDistance, revealTransition } from "../motion/revealMotion";
 import { motion, useReducedMotion } from "motion/react";
 import MotionReveal from "../motion/MotionReveal";
 import { ArrowUpRight, Code2, MonitorCog, Network, Quote } from "lucide-react";
@@ -33,33 +33,19 @@ const strengths = [
     },
 ];
 
-const desktopQuery = "(min-width: 1024px)";
-function subscribeDesktop(callback) {
-    const query = window.matchMedia(desktopQuery);
-    query.addEventListener("change", callback);
-    return () => query.removeEventListener("change", callback);
-}
-function getDesktop() {
-    return window.matchMedia(desktopQuery).matches;
-}
-function getServerDesktop() {
-    return false;
-}
-
 export default function About() {
-    const desktop = useSyncExternalStore(subscribeDesktop, getDesktop, getServerDesktop);
     const reduced = useReducedMotion();
-    const reveal = (direction) => ({
-        initial: reduced ? false : desktop ? { opacity: 0, x: direction * 24 } : { opacity: 0, y: 20 },
-        whileInView: { opacity: 1, x: 0, y: 0 },
+    const reveal = (delay) => ({
+        initial: reduced ? false : { opacity: 0, y: revealDistance },
+        whileInView: { opacity: 1, y: 0 },
         viewport: { amount: 0.2 },
-        transition: { duration: 0.55, delay: reduced ? 0 : direction > 0 ? 0.08 : 0, ease: [0.22, 1, 0.36, 1] },
+        transition: { ...revealTransition, delay },
     });
     return (
         <section id="about" className="px-5 sm:px-8 lg:px-12 py-20 lg:py-28 scroll-mt-24">
             <div className="mx-auto max-w-7xl">
                 <div className="lg:items-end gap-8 lg:gap-16 grid lg:grid-cols-[0.8fr_1.2fr]">
-                    <motion.div {...reveal(-1)}>
+                    <motion.div {...reveal(0)}>
                         <p className="mb-3 font-semibold text-emerald-700 dark:text-emerald-400 text-sm uppercase tracking-[0.2em]">
                             About Me
                         </p>
@@ -77,7 +63,7 @@ export default function About() {
                     </motion.div>
 
                     <motion.div
-                        {...reveal(1)}
+                        {...reveal(0.08)}
                         whileHover={reduced ? undefined : { y: -3, scale: 1.005 }}
                         className="p-6 sm:p-8 rounded-xl apple-glass"
                     >

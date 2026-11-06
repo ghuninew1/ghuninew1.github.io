@@ -1,3 +1,4 @@
+import { revealDistance, revealTransition } from "../motion/revealMotion";
 import { motion, useReducedMotion } from "motion/react";
 import { useState } from "react";
 import { ArrowUpRight, LoaderCircle, MapPin, Send, CheckCircle2, AlertCircle } from "lucide-react";
@@ -13,7 +14,7 @@ const inputClass =
 
 export default function Contact() {
     const reduced = useReducedMotion();
-    const itemMotion = { hidden: { opacity: 0, y: reduced ? 0 : 16 }, visible: { opacity: 1, y: 0 } };
+    const itemMotion = { hidden: { opacity: 0, y: revealDistance }, visible: { opacity: 1, y: 0, transition: revealTransition } };
     const { sendEmail, loading, success, error, resetStatus } = useResend();
     const [form, setForm] = useState({
         name: "",
@@ -68,7 +69,7 @@ export default function Contact() {
 
                     <div className="relative gap-10 lg:gap-14 grid lg:grid-cols-[0.8fr_1.2fr]">
                         <motion.div
-                            initial="hidden"
+                            initial={reduced ? false : "hidden"}
                             whileInView="visible"
                             viewport={{ amount: 0.2 }}
                             variants={{ visible: { transition: { staggerChildren: 0.06 } } }}

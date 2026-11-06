@@ -1,3 +1,4 @@
+import { revealDistance, revealTransition } from "../motion/revealMotion";
 import { motion, useReducedMotion } from "motion/react";
 import { useRef } from "react";
 import { ArrowDownRight, CircleDot, CalendarDays, Sparkles } from "lucide-react";
@@ -36,8 +37,8 @@ function TimelineItem({ item, index }) {
 
             <div className="flex-1 pb-8 sm:pb-10 min-w-0">
                 <motion.div
-                    variants={reduced ? undefined : { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-                    transition={{ duration: 0.55, delay: 0.12 }}
+                    variants={reduced ? undefined : { hidden: { opacity: 0, y: revealDistance }, visible: { opacity: 1, y: 0 } }}
+                    transition={{ ...revealTransition, delay: 0.12 }}
                     className={cx(
                         "relative overflow-hidden rounded-xl apple-glass apple-glass-interactive p-5 sm:p-7",
                         "transition-all duration-300 ease-out",
@@ -83,10 +84,10 @@ function TimelineHeading({ children }) {
     const reduced = useReducedMotion();
     return (
         <motion.div
-            initial={reduced ? false : { opacity: 0, y: 20 }}
+            initial={reduced ? false : { opacity: 0, y: revealDistance }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ amount: 0.2 }}
-            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+            transition={revealTransition}
             className="mb-12 sm:mb-14 max-w-2xl"
         >
             {children}
